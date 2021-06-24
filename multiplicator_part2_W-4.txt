@@ -1,0 +1,15 @@
+S00 = XOR(W01, W10)
+C00 = AND(W01, W10)
+wip_fa
+wip_fa
+wip_fa
+S01 = XOR(W02, S10)
+C10 = AND(W02, S10)
+wip_fa
+wip_fa
+wip_fa
+S02 = XOR(W03, S11)
+C20 = AND(W03, S11)
+wip_fa
+wip_fa
+wip_fa
