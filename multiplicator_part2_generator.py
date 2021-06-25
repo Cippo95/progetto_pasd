@@ -101,8 +101,8 @@ for i in range(int(bit)-1):
                     f'3L{i}D{j} = AND(1L{i}D{j}, CoL{i}D{d})\n'
                     f'SL{i}D{j} = XOR(CoL{i}D{d}, 1L{i}D{j})\n'
                     f'CoL{i}D{j} = OR(3L{i}D{j}, 2L{i}D{j})\n')
-
         f.write(text_generated)
+
 
 # f.write(text_generated)
 f.close()
