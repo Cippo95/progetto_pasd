@@ -19,7 +19,7 @@ INPUT(Y6)
 INPUT(X7)
 INPUT(Y7)
 
-# Prima parte del moltiplicatore: AND che generano i segnali W
+# 1) Prima parte del moltiplicatore: AND che generano i segnali W
 
 W00 = AND(X0, Y0)
 W10 = AND(X1, Y0)
@@ -86,7 +86,7 @@ W57 = AND(X5, Y7)
 W67 = AND(X6, Y7)
 W77 = AND(X7, Y7)
 
-# Seconda parte del moltiplicatore: cascata di rca shiftati
+# 2) Seconda parte del moltiplicatore: cascata di rca shiftati
 
 # RCA LIVELLO 0:
 
@@ -471,103 +471,104 @@ CoL6D6 = OR(3L6D6, 2L6D6)
 SL6D7 = XOR(CoL6D6, 1L6D7)
 CoL6D7 = OR(3L6D7, 2L6D7)
 
-# Ripple carry adder in cascata al moltiplicatore
+# 3) Ripple carry adder in cascata al moltiplicatore
+
 # HALFADDER RCA BIT 0
 S0 = XOR(W00, R0)
 Co0 = AND(W00, R0)
 
-# FULLADDER RCA BIT 1
+# FULLADDER RCA BIT 1 (Livello precedente)
 11 = XOR(SL0D0, R1)
 21 = AND(SL0D0, R1)
 31 = AND(11, Co0)
 S1 = XOR(Co0, 11)
 Co1 = OR(31, 21)
 
-# FULLADDER RCA BIT 2
+# FULLADDER RCA BIT 2 (Livello precedente)
 12 = XOR(SL1D0, R2)
 22 = AND(SL1D0, R2)
 32 = AND(12, Co1)
 S2 = XOR(Co1, 12)
 Co2 = OR(32, 22)
 
-# FULLADDER RCA BIT 3
+# FULLADDER RCA BIT 3 (Livello precedente)
 13 = XOR(SL2D0, R3)
 23 = AND(SL2D0, R3)
 33 = AND(13, Co2)
 S3 = XOR(Co2, 13)
 Co3 = OR(33, 23)
 
-# FULLADDER RCA BIT 4
+# FULLADDER RCA BIT 4 (Livello precedente)
 14 = XOR(SL3D0, R4)
 24 = AND(SL3D0, R4)
 34 = AND(14, Co3)
 S4 = XOR(Co3, 14)
 Co4 = OR(34, 24)
 
-# FULLADDER RCA BIT 5
+# FULLADDER RCA BIT 5 (Livello precedente)
 15 = XOR(SL4D0, R5)
 25 = AND(SL4D0, R5)
 35 = AND(15, Co4)
 S5 = XOR(Co4, 15)
 Co5 = OR(35, 25)
 
-# FULLADDER RCA BIT 6
+# FULLADDER RCA BIT 6 (Livello precedente)
 16 = XOR(SL5D0, R6)
 26 = AND(SL5D0, R6)
 36 = AND(16, Co5)
 S6 = XOR(Co5, 16)
 Co6 = OR(36, 26)
 
-# FULLADDER RCA INGRESSO BIT 7
+# FULLADDER RCA INGRESSO BIT 7 (Ultimo livello)
 17 = XOR(SL6D0, R7)
 27 = AND(SL6D0, R7)
 37 = AND(17, Co6)
 S7 = XOR(Co6, 17)
 Co7 = OR(37, 27)
 
-# FULLADDER RCA INGRESSO BIT 8
+# FULLADDER RCA INGRESSO BIT 8 (Ultimo livello)
 18 = XOR(SL6D1, R8)
 28 = AND(SL6D1, R8)
 38 = AND(18, Co7)
 S8 = XOR(Co7, 18)
 Co8 = OR(38, 28)
 
-# FULLADDER RCA INGRESSO BIT 9
+# FULLADDER RCA INGRESSO BIT 9 (Ultimo livello)
 19 = XOR(SL6D2, R9)
 29 = AND(SL6D2, R9)
 39 = AND(19, Co8)
 S9 = XOR(Co8, 19)
 Co9 = OR(39, 29)
 
-# FULLADDER RCA INGRESSO BIT 10
+# FULLADDER RCA INGRESSO BIT 10 (Ultimo livello)
 110 = XOR(SL6D3, R10)
 210 = AND(SL6D3, R10)
 310 = AND(110, Co9)
 S10 = XOR(Co9, 110)
 Co10 = OR(310, 210)
 
-# FULLADDER RCA INGRESSO BIT 11
+# FULLADDER RCA INGRESSO BIT 11 (Ultimo livello)
 111 = XOR(SL6D4, R11)
 211 = AND(SL6D4, R11)
 311 = AND(111, Co10)
 S11 = XOR(Co10, 111)
 Co11 = OR(311, 211)
 
-# FULLADDER RCA INGRESSO BIT 12
+# FULLADDER RCA INGRESSO BIT 12 (Ultimo livello)
 112 = XOR(SL6D5, R12)
 212 = AND(SL6D5, R12)
 312 = AND(112, Co11)
 S12 = XOR(Co11, 112)
 Co12 = OR(312, 212)
 
-# FULLADDER RCA INGRESSO BIT 13
+# FULLADDER RCA INGRESSO BIT 13 (Ultimo livello)
 113 = XOR(SL6D6, R13)
 213 = AND(SL6D6, R13)
 313 = AND(113, Co12)
 S13 = XOR(Co12, 113)
 Co13 = OR(313, 213)
 
-# FULLADDER RCA INGRESSO BIT 14
+# FULLADDER RCA INGRESSO BIT 14 (Ultimo livello)
 114 = XOR(SL6D7, R14)
 214 = AND(SL6D7, R14)
 314 = AND(114, Co13)
@@ -579,51 +580,36 @@ Co14 = OR(314, 214)
 115 = XOR(CoL6D7, R15)
 S15 = XOR(Co14, 115)
 
-# REGISTRO R DI 16 BIT
+# 4) Registro R di 16 bit
 R0 = DFF(S0)
 OUTPUT(R0)
-
 R1 = DFF(S1)
 OUTPUT(R1)
-
 R2 = DFF(S2)
 OUTPUT(R2)
-
 R3 = DFF(S3)
 OUTPUT(R3)
-
 R4 = DFF(S4)
 OUTPUT(R4)
-
 R5 = DFF(S5)
 OUTPUT(R5)
-
 R6 = DFF(S6)
 OUTPUT(R6)
-
 R7 = DFF(S7)
 OUTPUT(R7)
-
 R8 = DFF(S8)
 OUTPUT(R8)
-
 R9 = DFF(S9)
 OUTPUT(R9)
-
 R10 = DFF(S10)
 OUTPUT(R10)
-
 R11 = DFF(S11)
 OUTPUT(R11)
-
 R12 = DFF(S12)
 OUTPUT(R12)
-
 R13 = DFF(S13)
 OUTPUT(R13)
-
 R14 = DFF(S14)
 OUTPUT(R14)
-
 R15 = DFF(S15)
 OUTPUT(R15)

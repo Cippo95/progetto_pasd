@@ -27,7 +27,7 @@ f.write('\n\n# 1) Prima parte del moltiplicatore: AND che generano i segnali W\n
 for i in range(bit):
     for j in range(bit):
         text_generated = ('\n'
-        f'W{j}{i} = AND(X{j}, Y{i})')
+        f'W_X{j}Y{i} = AND(X{j}, Y{i})')
         f.write(text_generated)
 
 #commento e costruisco la seconda parte del moltiplicatore (rca in cascata) come da documentazione
@@ -49,13 +49,13 @@ for i in range(bit-1):
             if j==0:
                 f.write(f'\n# HALFADDER LIV {i} BIT {j}')
                 text_generated=('\n'
-                f'SL{i}D{j} = XOR(W{j}{a}, W{b}{i})\n'
-                f'CoL{i}D{j} = AND(W{j}{a}, W{b}{i})\n')
+                f'SL{i}D{j} = XOR(W_X{j}Y{a}, W_X{b}Y{i})\n'
+                f'CoL{i}D{j} = AND(W_X{j}Y{a}, W_X{b}Y{i})\n')
             #gli altri sono fulladder tranne l'ultimo che ha un ingresso 0 quindi è un halfadder
             else:
                 #variabili per collegare i segnali W
-                A=f'W{j}{a}'
-                B=f'W{b}{i}'
+                A=f'W_X{j}Y{a}'
+                B=f'W_X{b}Y{i}'
                 if j!=bit-1:
                     f.write(f'\n# FULLADDER LIV {i} BIT {j}')
                     text_generated=('\n'
@@ -75,12 +75,12 @@ for i in range(bit-1):
             if j==0:
                 f.write(f'\n# HALFADDER LIV {i} BIT {j}')
                 text_generated=('\n'
-                f'SL{i}D{j} = XOR(W{j}{a}, SL{c}D{b})\n'
-                f'CoL{i}D{j} = AND(W{j}{a}, SL{c}D{b})\n')
+                f'SL{i}D{j} = XOR(W_X{j}Y{a}, SL{c}D{b})\n'
+                f'CoL{i}D{j} = AND(W_X{j}Y{a}, SL{c}D{b})\n')
             else:
                 if j!=bit-1:
                     f.write(f'\n# FULLADDER LIV {i} BIT {j}')
-                    A=f'W{j}{a}'
+                    A=f'W_X{j}Y{a}'
                     B=f'SL{c}D{b}'
                     text_generated=('\n'
                     f'1L{i}D{j} = XOR({A}, {B})\n'
@@ -90,7 +90,7 @@ for i in range(bit-1):
                     f'CoL{i}D{j} = OR(3L{i}D{j}, 2L{i}D{j})\n')
                 else:
                     f.write(f'\n# FULLADDER LIV {i} BIT {j}')
-                    A=f'W{j}{a}'
+                    A=f'W_X{j}Y{a}'
                     B=f'CoL{c}D{j}'
                     text_generated=('\n'
                     f'1L{i}D{j} = XOR({A}, {B})\n'
@@ -112,8 +112,8 @@ for j in range(2*bit):
         #al primo bit ho un halfadder che va a sommare W00 e il primo bit del registro
         f.write(f'\n# HALFADDER RCA BIT {j}')
         text_generated=('\n'
-        f'S{j} = XOR(W{0}{0}, R{j})\n'
-        f'Co{j} = AND(W{0}{0}, R{j})\n')
+        f'S{j} = XOR(W_X{0}Y{0}, R{j})\n'
+        f'Co{j} = AND(W_X{0}Y{0}, R{j})\n')
         f.write(text_generated)
     else:
         # i successivi devo prendere i bit a 0 dei livelli precedenti l'ultimo
