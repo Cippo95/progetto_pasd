@@ -1,5 +1,47 @@
-\documentclass{article}
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
+
+\title{Progetto corso di PASD}
+\author{Filippo Landi}
 
 \begin{document}
-Hello world!
+\maketitle
+
+\begin{abstract}
+Il mio progetto per il corso di Progetto Automatico di Sistemi Digitali (PASD) consiste nello studio statistico di alcuni possibili difetti di un circuito di tipo "multiply and accumulate".
+\end{abstract}
+
+\section{Introduzione al progetto}
+Il progetto si avvale: 
+\begin{itemize}
+\item Di alcuni concetti inerenti il collaudo dei circuiti digitali.
+\item Del software libero "hope" un software di electronic design automation usato per il collaudo dei circuiti, esso sfrutta una descrizione dei circuiti (netlist) in formato .bench.
+\end{itemize}
+
+
+\section{Circuito multiply and accumulate}
+Mi è stato richiesto di realizzare questo circuito a 8 bit.
+Ho ricevuto uno schema dal professore di un circuito di questo tipo a 4 bit, riporto quindi la documentazione.
+\subsection{Documentazione fornita}
+Il multiply and accumulate è una unita ampiamente utilizzata nei DSP e nel machine learning per realizzare funzioni del tipo . La dimensione degli ingressi sia n, per cui quella dell'uscita del moltiplicatore sia 2n.
+
+Qui c'è lo schema di un moltiplicatore parallelo a 4 bit che può essere esteso per valori più grandi di n.
+
+\subsection{Considerazioni ulteriori}
+Il ripple carry adder è quello standard, ha ingressi quindi 2n, l'uscita va ad un registro realizzato con flip flop d che retroaziona l'uscita in mondo da realizzare la somma dei vari risultati.
+Potrebbe essere necessario un ulteriore porta AND ai fini del collaudo ma prendo questo in considerazione successivamente.
+
+\section{Approccio alla descrizione in formato .bench}
+La stesura manuale del circuito a 8 bit non mi sembrava un approccio intelligente al problema: è facile commettere errori sia (banalmente) di battitura sia dovuti ad una scarsa comprensione dell'architettura del circuito.
+
+Il mio approccio quindi è stato quella di scrivere uno script in python che descrivesse e collegasse le delle varie parti del circuito.  
+
+In partenza ho scritto alcuni circuiti di prova, che trovate nella cartella omonima, per comprendere come eseguire questa operazione. 
+
+Credo sia interessante notare come questo approccio abbia permesso di avere una dimensione in bit del circuito arbitraria.
+
+Il risultato è il file "multiplicator\_generator.py": basta eseguirlo con python versione 3 (io ho Python 3.8.5) con argomento il numero di bit del circuito desiderati.
+
 \end{document}
