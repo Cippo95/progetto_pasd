@@ -7,19 +7,23 @@ if len(sys.argv) != 2:
 bit = int(sys.argv[1])
 
 #assegno un nome al file parametrico coi bit, estensione .bench per essere usato con hope
-file_name = (f'multiplicator_{bit}.bench')
+file_name = (f'mac_{bit}.bench')
 
 #apertura del file in scrittura
 f = open(file_name, "w")
 
 #scrivo il nome del circuto, serve ad hope
-f.write('# multiplicator\n\n# Input\n')
+f.write('# multiply_and_accumulate_unit\n\n# Input\n')
 
 #generazione degli input
 for i in range(bit):
     text_generated = ('\n'
-    f'INPUT(X{i})\n'
-    f'INPUT(Y{i})')
+    f'INPUT(X{bit-i-1})')
+    f.write(text_generated)
+#generazione degli input
+for i in range(bit):
+    text_generated = ('\n'
+    f'INPUT(Y{bit-i-1})')
     f.write(text_generated)
 
 #commento e costruisco la prima parte del moltiplicatore (i vari and) come da documentazione
@@ -153,6 +157,6 @@ f.write(f'\n# 4) Registro R di {2*bit} bit')
 for j in range(2*bit):
     text_generated=('\n'
     f'R{j} = DFF(S{j})\n'
-    f'OUTPUT(R{j})')
+    f'OUTPUT(R{2*bit-j-1})')
     f.write(text_generated)
 f.close()

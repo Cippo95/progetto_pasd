@@ -1,15 +1,15 @@
-# multiplicator
+# multiply_and_accumulate_unit
 
 # Input
 
-INPUT(X0)
-INPUT(Y0)
-INPUT(X1)
-INPUT(Y1)
-INPUT(X2)
-INPUT(Y2)
 INPUT(X3)
+INPUT(X2)
+INPUT(X1)
+INPUT(X0)
 INPUT(Y3)
+INPUT(Y2)
+INPUT(Y1)
+INPUT(Y0)
 
 # 1) Prima parte del moltiplicatore: AND che generano i segnali W
 
@@ -166,18 +166,18 @@ S7 = XOR(Co6, 17)
 
 # 4) Registro R di 8 bit
 R0 = DFF(S0)
-OUTPUT(R0)
-R1 = DFF(S1)
-OUTPUT(R1)
-R2 = DFF(S2)
-OUTPUT(R2)
-R3 = DFF(S3)
-OUTPUT(R3)
-R4 = DFF(S4)
-OUTPUT(R4)
-R5 = DFF(S5)
-OUTPUT(R5)
-R6 = DFF(S6)
-OUTPUT(R6)
-R7 = DFF(S7)
 OUTPUT(R7)
+R1 = DFF(S1)
+OUTPUT(R6)
+R2 = DFF(S2)
+OUTPUT(R5)
+R3 = DFF(S3)
+OUTPUT(R4)
+R4 = DFF(S4)
+OUTPUT(R3)
+R5 = DFF(S5)
+OUTPUT(R2)
+R6 = DFF(S6)
+OUTPUT(R1)
+R7 = DFF(S7)
+OUTPUT(R0)
