@@ -5,26 +5,34 @@
 \usepackage{graphicx}
 \graphicspath{}
 
-\title{Progetto corso di Progetto Automatico di Sistemi Digitali}
+\title{Progetto per il corso di Progetto Automatico di Sistemi Digitali}
 \author{Filippo Landi}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Il mio progetto per il corso di Progetto Automatico di Sistemi Digitali consiste nello studio statistico di alcuni possibili difetti in un circuito di tipo "multiply and accumulate" o "mac" in breve.
+Il mio progetto per il corso di Progetto Automatico di Sistemi Digitali (PASD in breve) consiste nello studio statistico del comportamento di un circuito "multiply and accumulate" (o "mac" in breve) in presenza di alcuni difetti di produzione.
 \end{abstract}
 
 \section{Introduzione al progetto}
 
-Per il progetto viene usato "HOPE", un software di Electronic Design Automation (EDA) sviluppato dalla università VirginiaTech: è un simulatore di guasto per circuiti digitali sequenziali e legge i circuiti in una descrizione (netlist) in formato ".bench".
+Il progetto riguarda il collaudo dei sistemi digitali, argomento del corso di PASD.
 
-La parte operativa di descrizione del circuito nel formato .bench e i calcoli statistici sui guasti saranno svolti per semplicità con degli script scritti in Python.  
+Al fine di simulare i guasti del circuito userò "HOPE" un simulatore di guasto per circuiti digitali sequenziali sviluppato dall'università VirginiaTech, anche questo proposto durante il corso.  
+
+HOPE legge i circuiti attraverso delle descrizioni della rete (netlist) in formato .bench, quindi il primo punto del progetto sarà studiare la struttura del circuito per implementarlo in questo formato.
+
+Ho deciso di usare Python per aiutarmi con i diversi passaggi del progetto.
+
+Partiamo quindi dalla descrizione del circuito da studiare, passeremo poi alla sua implementazione e in fine ad alcuni studi statistici.
 
 \section{Circuito multiply and accumulate}
 
-Come prima cosa mi è stato richiesto di realizzare un circuito multiply and accumulate (mac) a 8 bit.
-Ho ricevuto un documento dal professore che illustra gli schemi di un circuito di questo tipo a 4 bit, più alcuni commenti utili: vista la dimensione riporto questa documentazione nella pagina seguente.
+Mi è stato richiesto di realizzare un circuito multiply and accumulate (mac) a 8 bit, esso è composto da un moltiplicatore con un sommatore in cascata e un registro per retroazionare le uscite in modo da accumulare i risultati.
+
+Alla pagina seguente riporto un documento inviatomi dal professore che illustra gli schemi di un circuito di questo tipo a 4 bit.
+
 \newpage
 \includegraphics[width=\textwidth]{mac.png}
 \newpage
@@ -33,14 +41,16 @@ Ho ricevuto un documento dal professore che illustra gli schemi di un circuito d
 La struttura del moltiplicatore è ben illustrata nella documentazione:
 
 \begin{itemize}
-  \item Ogni segnale X è messo in ingresso con ogni Y, generando i segnali W.
-  \item I segnali W vengono usati da ripple carry adder strutturati su più livelli: si può notare che il numero di livelli è n-1 in quanto al primo livello vengono usati WX1 e WX0, poi i rimanenti WXY nei livelli successivi.
+  \item Ogni segnale X è messo in AND con ogni Y, generando i segnali W.
+  \item I segnali W vengono usati da degli adder strutturati su più livelli: si può notare che il numero di livelli è n-1 in quanto al primo livello vengono usati WX1 e WX0, poi i rimanenti WXY nei livelli successivi.
 \end{itemize}
 
 \subsection{Ripple Carry Adder}
 
-I ripple carry adder nella precedente documentazione erano illustrati la livello register transfer level (RTL) per ovvie ragioni di chiarezza.
-Per l'implementazione del circuito ci serve vedere come sono fatti a livello di porte logiche.  
+Usiamo dei ripple carry adder sia per la cascata di adder del moltiplicatore oltre che per il ripple carry adder successivo con dimensione degli ingressi 2n.
+
+I ripple carry adder nella precedente documentazione erano illustrati a livello register transfer level (RTL) per ovvie ragioni di chiarezza, però per l'implementazione del circuito ci serve vedere come sono fatti a livello di porte logiche.  
+
 I ripple carry adder sono circuiti formati da una serie di adder in cascata:
 \includegraphics[width=\textwidth]{ripple_carry_adder}
 
@@ -54,34 +64,77 @@ Questo è lo schema che uso del full-adder:
 \includegraphics[width=8cm]{full_adder}
 \end{center}
 
-Opportunamente collegando i vari segnali e circuiti quindi si ottiene un ripple carry adder.
-Abbiamo dei ripple carry adder sia per la cascata di ripple carry adder per il moltiplicatore che per la seconda parte del circuito che è un sommatore (di ingressi 2n).
+Opportunamente collegando le varie porte logiche quindi si ottiene un ripple carry adder.  
 
-\subsection{Sommatore}
-Come già detto si sfruttano gli stessi schemi riportati prima, solo che qui il ripple carry adder è di dimensione doppia rispetto a quelli del moltiplicatore.
-Un ingresso è dato dall'uscita del moltiplicatore mentre l'altra è data dalle uscite stesse del sommatore retroazionate grazie a dei flip flop tipo D (circuito già integrato in HOPE).
+\subsubsection{Sommatore}
+Come già detto è un ripple carry adder con dimensione degli ingressi 2n: un ingresso è dato dall'uscita del moltiplicatore mentre l'altra è data dalle uscite stesse del sommatore retroazionate attraverso dei flip flop tipo D (circuito già integrato in HOPE).
 
-\section{Realizzazione del circuito in Python}
+\section{Realizzazione del circuito in .bench}
 
-La stesura manuale del circuito a 8 bit non mi sembrava un approccio furbo al problema poiché è facile commettere errori sia (banalmente) di battitura sia dovuti ad una scarsa comprensione dell'architettura del circuito.
+La stesura manuale del file .bench del circuito ad 8 bit non mi sembrava un approccio furbo vista l'architettura piuttosto complessa da rappresentare. Probabilmente proseguire con tale metologia avrebbe portato a vari errori: sia banalmente di battitura, sia dovuti alla complessità e quindi errori nel collegamento dei vari segnali. Per questo ho pensato ad una metodologia stile "dividi et impera".
 
-Il mio approccio quindi è stato quella di scrivere uno script in Python che descrivesse e collegasse le varie parti del circuito.  
+In partenza ho scritto alcuni circuiti di prova per esplorare i vari addder e la prima parte del moltiplicatore.
+Li trovate nella cartella "circuti\_prova", non sono fondamentali per il progetto però possono aiutare alla comprensione della metodologia usata.
 
-In partenza ho scritto alcuni circuiti di prova, che trovate nella cartella "circuti\_prova", non sono fondamentali per il progetto però credo che possano aiutare alla comprensione della metodologia usata.
+Appurata la struttura dei circuiti base ho creato un singolo file che li mettesse insieme in maniera opportuna (vari cicli for più certe condizioni).
+Questo approccio ha portato allo script "mac\_generator.py" che permette di generare il circuito con una dimensione arbitraria degli ingressi da passare come argomento: per generare un mac 4 bit si può scrivere da terminale questo comando Python: "python3 mac\_generator.py 4".  
 
-Questo approccio mi ha permesso di arrivare ad uno script che permette di generare il circuito con una dimensione arbitraria degli ingressi da passare come argomento: ad esempio per generare un mac 4 bit si può scrivere da terminale questo comando Python: "python3 mac\_generator 4".
+Il passo successivo sarebbe un approccio più modulare, che otterrebbe lo stesso risultato chiamando sottofunzioni per la varie parti del circuito: per i miei scopi uno script monolitico è più che sufficiente quindi mi fermo con questa versione.
+
+Il codice è ampiamente commentato quindi consiglio di leggerlo per comprenderne il funzionamento.
+
+L'unico punto che potrebbe infastidire è la comprensione dei vari segnali, proprio per questo un approccio manuale avrebbe portato ad errori a mio avviso.
+Descrivo la struttura dei vari segnali sperando di fare un po' di chiarezza:
+
+\begin{itemize}
+
+\item Gli input sono facilmente individuabili e sono X e Y seguiti dal rispettivo peso del bit, es. X0,Y0,X1,Y1 etc.
+\item I segnali W ottenuti dagli AND di X e Y sono scritti come "W\_XnYn" (n indica il peso del bit), es. W\_X0Y0.
+\item I ripple carry adder contengono half-adder e full-adder:
+
+\begin{itemize}
+
+\item Gli half-adder, come dagli schemi, hanno uscita S e Co (il carry out) e sono usati in generale (con qualche eccezione) per il bit di minor peso (bit 0):
+\begin{itemize}
+\item Nel moltiplicatore gli rca sono strutturati in livelli:
+\begin{itemize}
+\item SL0D0 indica l'uscita dell'half-adder al livello (L) 0 del bit di peso (D) 0.
+\item CoL0D0 indica il carry out dell'half-adder al livello (L) 0 del bit di peso (D) 0, questo carry out sarà il carry in del full-adder successivo.
+\end{itemize}
+\item Nel sommatore invece non ci sono più i livelli:
+\begin{itemize} 
+\item S0 indica l'uscita dell'half-adder per il bit di peso 0.
+\item C0 il suo carry out.
+\end{itemize}
+\end{itemize}
+
+\item I full-adder, come dagli schemi, hanno uscita S e Co con l'aggiunta rispetto gli half-adder dei segnali interni 1,2,3:
+\begin{itemize}
+\item Nel moltiplicatore gli rca sono strutturati in livelli: 
+\begin{itemize}
+\item SL0D1 indica l'uscita del full-adder al livello (L) 0 del bit di peso (D) 1
+\item lo stesso full-adder avrà CoL0D1, 1L0D1, 2L0D1 e 3L0D1 (carry out e segnali interni).
+\end{itemize}
+\item Nel sommatore invece non ci sono più i livelli: 
+\begin{itemize}
+\item S1 indica l'uscita del full-adder per il bit di peso 1
+\item Lo stesso full-adder avrà Co1, 11, 21 e 31 (carry out e segnali interni) sempre legati al primo bit.
+\end{itemize}
+\end{itemize}
+
+\end{itemize}
+
+\end{itemize}
+
+Probabilmente i segnali interni dei full-adder potrebbero creare un po' di confusione essendo numerici, nella mia prima analisi li avevo assegnati così e li ho mantenuti così, in caso basta cambiarli con una qualche lettera non assegnata.
+
+Spero che questa spiegazione dei segnali sia esaustiva alla comprensione della struttura del circuito risultante da questo primo script Python.
 
 Al momento sul mio computer ho installato Python 3.8.10, quindi credo che una qualsiasi versione di Python 3.8 non dovrebbe dare problemi col mio codice.
 
-Il codice è ampiamente commentato e credo che i commenti siano sufficienti a capire il funzionamento per questo non riporto il codice in questa documentazione.
+\section{Studio statistico del circuito}
 
-Riporto giusto qualche considerazione:
-\begin{itemize}
-  \item Serve una conoscenza base del linguaggio Python per capire a pieno il codice.
-  \item I nomi dei segnali sono come riportati negli schemi con l'aggiunta per differenziarli dell'indice del livello a cui appartengono: ad esempio l'S0 del primo livello di rca del moltiplicatore è ovviamente differente dall'S0 del secondo livello per questo nel codice sono definiti SL0D0 e SL1D0, con L che indica il livello D il peso del bit.
-  \item L'idea principale è quella di usare cicli for variando opportunamente gli indici dei segnali, gli schemi dei circuiti si ripetono spesso tranne per qualche eccezione riportata nei commenti del codice.
-  \item Tutti i segnali di carry sono definiti come carry out (Co nel codice), di fatto i carry in sono il carry out dell'adder precedente quindi coincidono.
-\end{itemize}
+Work in Progress.
 
 \end{document}
 
