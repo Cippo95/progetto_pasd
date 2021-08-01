@@ -1,9 +1,0 @@
-1) Spiegazione di cosa tratta il progetto
-WIP
-
-2) Spiegazione approccio
-Costruzione: Circuito a 8 bit troppo complesso da scrivere a mano, automatizzo il procedimento con degli script in python. Creazione di file dei chip uno ad uno e poi assemblo in un monolite.
-
-3) Studi statistici sul circuito
-WIP
-
