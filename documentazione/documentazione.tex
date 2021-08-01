@@ -31,12 +31,11 @@ Partiamo quindi dalla descrizione del circuito da studiare, passeremo poi alla s
 
 Mi è stato richiesto di realizzare un circuito multiply and accumulate (mac) a 8 bit, esso è composto da un moltiplicatore con un sommatore in cascata e un registro per retroazionare le uscite in modo da accumulare i risultati.
 
-Alla pagina seguente riporto un documento inviatomi dal professore che illustra gli schemi di un circuito di questo tipo a 4 bit.
+Riporto un documento inviatomi dal professore che illustra gli schemi di un circuito di questo tipo a 4 bit.
+
+\includegraphics[width=13cm]{mac.png}
 
 \newpage
-\includegraphics[width=\textwidth]{mac.png}
-\newpage
-
 \subsection{Moltiplicatore}
 La struttura del moltiplicatore è ben illustrata nella documentazione:
 
@@ -45,7 +44,10 @@ La struttura del moltiplicatore è ben illustrata nella documentazione:
   \item I segnali W vengono usati da degli adder strutturati su più livelli: si può notare che il numero di livelli è n-1 in quanto al primo livello vengono usati WX1 e WX0, poi i rimanenti WXY nei livelli successivi.
 \end{itemize}
 
-\subsection{Ripple Carry Adder}
+\subsection{Sommatore}
+È un ripple carry adder con dimensione degli ingressi 2n: un ingresso è dato dall'uscita del moltiplicatore mentre l'altra è data dalle uscite stesse del sommatore retroazionate attraverso dei flip flop tipo D (circuito già integrato in HOPE).
+
+\subsubsection{Ripple Carry Adder}
 
 Usiamo dei ripple carry adder sia per la cascata di adder del moltiplicatore oltre che per il ripple carry adder successivo con dimensione degli ingressi 2n.
 
@@ -66,14 +68,11 @@ Questo è lo schema che uso del full-adder:
 
 Opportunamente collegando le varie porte logiche quindi si ottiene un ripple carry adder.  
 
-\subsubsection{Sommatore}
-Come già detto è un ripple carry adder con dimensione degli ingressi 2n: un ingresso è dato dall'uscita del moltiplicatore mentre l'altra è data dalle uscite stesse del sommatore retroazionate attraverso dei flip flop tipo D (circuito già integrato in HOPE).
-
 \section{Realizzazione del circuito in .bench}
 
-La stesura manuale del file .bench del circuito ad 8 bit non mi sembrava un approccio furbo vista l'architettura piuttosto complessa da rappresentare. Probabilmente proseguire con tale metologia avrebbe portato a vari errori: sia banalmente di battitura, sia dovuti alla complessità e quindi errori nel collegamento dei vari segnali. Per questo ho pensato ad una metodologia stile "dividi et impera".
+La stesura manuale del file .bench del circuito ad 8 bit non mi sembrava un approccio furbo vista l'architettura piuttosto complessa da rappresentare. Probabilmente proseguire con tale metologia avrebbe portato a vari errori: sia banalmente di battitura, sia dovuti alla complessità e quindi errori nel collegamento dei vari segnali. Per questo ho pensato ad una metodologia stile "divide et impera".
 
-In partenza ho scritto alcuni circuiti di prova per esplorare i vari addder e la prima parte del moltiplicatore.
+In partenza ho scritto alcuni circuiti di prova per esplorare i vari adder e la prima parte del moltiplicatore.
 Li trovate nella cartella "circuti\_prova", non sono fondamentali per il progetto però possono aiutare alla comprensione della metodologia usata.
 
 Appurata la struttura dei circuiti base ho creato un singolo file che li mettesse insieme in maniera opportuna (vari cicli for più certe condizioni).
@@ -83,7 +82,8 @@ Il passo successivo sarebbe un approccio più modulare, che otterrebbe lo stesso
 
 Il codice è ampiamente commentato quindi consiglio di leggerlo per comprenderne il funzionamento.
 
-L'unico punto che potrebbe infastidire è la comprensione dei vari segnali, proprio per questo un approccio manuale avrebbe portato ad errori a mio avviso.
+L'unico punto che potrebbe essere difficoltoso è la comprensione dei vari segnali, proprio per questo un approccio manuale a mio avviso avrebbe portato ad errori di battitura o logici dovuti dalla complessità del circuito.
+
 Descrivo la struttura dei vari segnali sperando di fare un po' di chiarezza:
 
 \begin{itemize}
@@ -126,7 +126,7 @@ Descrivo la struttura dei vari segnali sperando di fare un po' di chiarezza:
 
 \end{itemize}
 
-Probabilmente i segnali interni dei full-adder potrebbero creare un po' di confusione essendo numerici, nella mia prima analisi li avevo assegnati così e li ho mantenuti così, in caso basta cambiarli con una qualche lettera non assegnata.
+Probabilmente i segnali interni dei full-adder sono i più confusionari, nella mia prima analisi li avevo assegnati numerici e li ho mantenuti così, in caso basta cambiarli con una qualche lettera non assegnata.
 
 Spero che questa spiegazione dei segnali sia esaustiva alla comprensione della struttura del circuito risultante da questo primo script Python.
 

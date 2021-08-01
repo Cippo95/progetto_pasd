@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  2 AUG 2021 00:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  2 AUG 2021 00:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -135,35 +135,31 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<mac.png, id=15, 817.0525pt x 999.735pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<mac.png, id=12, 817.0525pt x 999.735pt>
 File: mac.png Graphic file (type png)
 <use mac.png>
-Package pdftex.def Info: mac.png  used on input line 37.
-(pdftex.def)             Requested size: 390.0pt x 477.19777pt.
-
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 37--38
-[][] 
- []
-
-[3 <./mac.png>]
-<ripple_carry_adder.png, id=21, 1959.32pt x 811.03pt>
+Package pdftex.def Info: mac.png  used on input line 36.
+(pdftex.def)             Requested size: 369.88582pt x 452.59193pt.
+ [2 <./mac.png>]
+<ripple_carry_adder.png, id=18, 1959.32pt x 811.03pt>
 File: ripple_carry_adder.png Graphic file (type png)
 <use ripple_carry_adder.png>
-Package pdftex.def Info: ripple_carry_adder.png  used on input line 55.
+Package pdftex.def Info: ripple_carry_adder.png  used on input line 57.
 (pdftex.def)             Requested size: 390.0pt x 161.42348pt.
-<half_adder.png, id=22, 128.20653pt x 71.59875pt>
+<half_adder.png, id=19, 128.20653pt x 71.59875pt>
 File: half_adder.png Graphic file (type png)
 <use half_adder.png>
-Package pdftex.def Info: half_adder.png  used on input line 59.
+Package pdftex.def Info: half_adder.png  used on input line 61.
 (pdftex.def)             Requested size: 128.2062pt x 71.59857pt.
-<full_adder.png, id=23, 398.23006pt x 237.29892pt>
+ [3 <./ripple_carry_adder.png>]
+<full_adder.png, id=27, 398.23006pt x 237.29892pt>
 File: full_adder.png Graphic file (type png)
 <use full_adder.png>
-Package pdftex.def Info: full_adder.png  used on input line 64.
+Package pdftex.def Info: full_adder.png  used on input line 66.
 (pdftex.def)             Requested size: 227.62204pt x 135.63835pt.
- [4 <./ripple_carry_adder.png> <./half_adder.png>] [5 <./full_adder.png>] [6] [
-7] (./documentazione.aux) ) 
+ [4 <./half_adder.png> <./full_adder.png>] [5] [6]
+(./documentazione.aux) ) 
 Here is how much of TeX's memory you used:
  2393 strings out of 481239
  32161 string characters out of 5920377
@@ -171,19 +167,19 @@ Here is how much of TeX's memory you used:
  17667 multiletter control sequences out of 15000+600000
  540838 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,6n,27p,803b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-
-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/
-texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx14
-40.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm144
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
-Output written on documentazione.pdf (7 pages, 357457 bytes).
+ 30i,6n,27p,803b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.
+enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/tex
+mf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.
+pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texm
+f/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public
+/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb>
+Output written on documentazione.pdf (6 pages, 359404 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
