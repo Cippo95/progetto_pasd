@@ -16,3 +16,8 @@ In ogni caso ho lasciato nella cartella i vari file generati.
 Una volta generato con "./hope -F mac -r 16 -0 mac_4.bench" il file mac (come detto è già presente), lo si può analizzare con "getvectors.py": "python3 getvectors.py mac".
 
 Ho convertito gli script per essere usabili anche con Python 2.7, si trovano nella cartella "script compatibili python2.7".
+Ho apportato una piccola modifica a come getvectors.py mostra i dati floating point: ho fissato le cifre decimali mostrate a 15 così che la rappresentazione sia consistente per le due versioni.
+
+L'utilizzo rimane simile: 
+1) "python2 mac_generator_python2.py 4" per la generazione di un mac 4 bit.
+2) "python2 getvectors_python2.py mac" per vedere le prime semplici statistiche.  

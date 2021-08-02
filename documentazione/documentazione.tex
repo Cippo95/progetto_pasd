@@ -130,7 +130,16 @@ Probabilmente i segnali interni dei full-adder sono i più confusionari, nella m
 
 Spero che questa spiegazione dei segnali sia esaustiva alla comprensione della struttura del circuito risultante da questo primo script Python.
 
-Al momento sul mio computer ho installato Python 3.8.10, quindi credo che una qualsiasi versione di Python 3.8 non dovrebbe dare problemi col mio codice.
+Gli script originali sono stati scritti con Python 3.8.10 e dovrebbero girare con ogni versione superiore alla 3.6.
+
+Ho anche fatto una conversione per rendere gli script compatibili con Python 2.7, le modifiche non comportano differenze nei file di output.
+
+Se interessa, a livello di sorgenti ci sono state queste modifiche:
+\begin{itemize}
+\item Python 3.6 aveva introdotto le cosidette "f-strings" molto più comode della metodologia precedente per formattare le stringhe: Python 2.7 ovviamente usa la vecchia formattazione quindi ho dovuto sostituire le f-strings con stringhe formattate con .format().
+\item Python 2 suppone che tutti i caratteri siano ascii e quindi se trova lettere accentate da' errore quindi ho forzato l'encoding utf-8 con un "commento magico" nella prima riga di codice.
+\item La concatenzione delle stringhe avviene in maniera diversa tra le due versioni per le differenze dovute alla formattazione: con il nuovo metodo le stringhe si concatenano automaticamente, con il vecchio bisogna aggiungere un "+".
+\end{itemize}
 
 \section{Studio statistico del circuito}
 
