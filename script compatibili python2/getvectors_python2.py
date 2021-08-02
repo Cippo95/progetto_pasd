@@ -1,3 +1,5 @@
+#coding=utf-8
+
 #la libreria sys permette di usare gli argomenti a riga di comando
 import sys
 
@@ -9,7 +11,7 @@ if len(sys.argv) != 2:
 file_name = sys.argv[1]
 
 #nome del file in cui salvo gli ingressi le uscite precedenti e i guasti rivelati per ogni test
-fn_array = (f"vectors_{file_name}")
+fn_array = ("vectors_{}".format(file_name))
 
 #al fine di fare dei calcoli statistici introduco dei contatori
 
@@ -28,7 +30,7 @@ with open(file_name) as fp:
             #controllo che siano stati iniettati dei guasti per poter fare i calcoli
             if(count_test!=0):
                 #copertura di guasto con questo test
-                test_fault_coverage=(count_fault/count_test)*100
+                test_fault_coverage=(float(count_fault)/float(count_test))*100
                 print("guasti rivelati: {}".format(count_fault)+
                 "\nguasti iniettati: {}".format(count_test)+
                 "\npercentuale di rivelazione: {:.15f}%".format(test_fault_coverage))
