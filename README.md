@@ -14,3 +14,5 @@ Non condivido HOPE perché non so se sia liberamente condivisibile.
 In ogni caso ho lasciato nella cartella i vari file generati.
 
 Una volta generato con "./hope -F mac -r 16 -0 mac_4.bench" il file mac (come detto è già presente), lo si può analizzare con "getvectors.py": "python3 getvectors.py mac".
+
+Ho convertito gli script per essere usabili anche con Python 2.7, si trovano nella cartella "script compatibili python2.7".
