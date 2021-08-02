@@ -13,4 +13,4 @@ Per generare un mac 4 bit basta scrivere in console: "python3 mac_generator.py 4
 Non condivido HOPE perché non so se sia liberamente condivisibile.
 In ogni caso ho lasciato nella cartella i vari file generati.
 
-Una volta generato con "./hope -F mac -r 16 -0" il file mac (come detto è già presente), lo si può analizzare con "getvectors.py": "python3 getvectors.py mac".
+Una volta generato con "./hope -F mac -r 16 -0 mac_4.bench" il file mac (come detto è già presente), lo si può analizzare con "getvectors.py": "python3 getvectors.py mac".
