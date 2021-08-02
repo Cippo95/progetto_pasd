@@ -49,7 +49,7 @@ La struttura del moltiplicatore è ben illustrata nella documentazione:
 
 \subsubsection{Ripple Carry Adder}
 
-Usiamo dei ripple carry adder sia per la cascata di adder del moltiplicatore oltre che per il ripple carry adder successivo con dimensione degli ingressi 2n.
+Usiamo dei ripple carry adder (rca) sia per la cascata di adder del moltiplicatore oltre che per il ripple carry adder successivo con dimensione degli ingressi 2n.
 
 I ripple carry adder nella precedente documentazione erano illustrati a livello register transfer level (RTL) per ovvie ragioni di chiarezza, però per l'implementazione del circuito ci serve vedere come sono fatti a livello di porte logiche.  
 
@@ -68,7 +68,7 @@ Questo è lo schema che uso del full-adder:
 
 Opportunamente collegando le varie porte logiche quindi si ottiene un ripple carry adder.  
 
-\section{Realizzazione del circuito in .bench}
+\section{Realizzazione del circuito .bench}
 
 La stesura manuale del file .bench del circuito ad 8 bit non mi sembrava un approccio furbo vista l'architettura piuttosto complessa da rappresentare. Probabilmente proseguire con tale metologia avrebbe portato a vari errori: sia banalmente di battitura, sia dovuti alla complessità e quindi errori nel collegamento dei vari segnali. Per questo ho pensato ad una metodologia stile "divide et impera".
 
@@ -134,7 +134,30 @@ Al momento sul mio computer ho installato Python 3.8.10, quindi credo che una qu
 
 \section{Studio statistico del circuito}
 
-Work in Progress.
+Ottenuto il file .bench contenente la descrizione del circuito possiamo passare ad usare HOPE.
+
+Scrivendo "./hope -h g" si apre la guida utente in cui si possono vedere i vari comandi disponibili.
+
+Si è deciso di sfruttare il circuito a 4 bit per le prime operazioni.
+
+Con il comando "./hope -0 mac\_4.bench" possiamo testare il nostro mac e scoprire la copertura di guasto, "-0" serve per settare i flip flop a 0.
+
+Con il comando "./hope -F {file\_name} -r 16 -0" possiamo:
+
+\begin{itemize}
+\item Grazie a "-F {file\_name}" scrivere su un file per ogni guasto le uscite che saranno buone o guaste. Se rivelano il guasto avranno un asterisco nella loro linea.
+\item Grazie a "-r 16", testiamo con un pattern random di 16 vettori di test.
+\item "-0" come prima setta i flip flop a 0.
+\end{itemize}
+
+Prendendo il file di output poi lo possiamo analizzare per uno studio statistico.
+
+Realizzo questa funzione con lo script Python "getvectors.py".
+Questo script apre il file ottenuto e conta per ogni test il numero di guasti iniettati e quante volte rivelano un errore e calcola quindi una copertura di guasto relativa a quel test particolare.
+
+Per salvare l'output del programma basta ridirigere l'output da terminale a un file a piacimento: es. "getvectors.py mac > output\_mac"
+
+Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac".
 
 \end{document}
 

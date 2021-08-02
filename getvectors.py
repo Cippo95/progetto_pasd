@@ -65,6 +65,13 @@ with open(file_name) as fp:
                 test=test[1].strip()
                 #aggiungo il vettore all'array dei risultati correnti
                 array_test.append(test)
+            else: 
+                #recupero il vettore di rivelazione separando la stringa sul ":"
+                test=line.split(':')
+                #prendo la seconda parte (quella col vettore) e tolgo gli spazi
+                test=test[1].strip()
+                #aggiungo il vettore all'array dei risultati correnti
+                array_test.append(test)    
 #salvo l'array dei vettori di test
 with open(fn_array, "w") as fp:
     for line in array:
