@@ -1,3 +1,4 @@
+#qui nel file per python 2.7 metto l'encoding
 #sys serve per usare gli argomenti
 import sys
 
@@ -11,7 +12,7 @@ bit = int(sys.argv[1])
 #assegno un nome al file, parametrico coi bit, estensione .bench per essere usato con hope
 file_name = (f'mac_{bit}.bench')
 
-#apertura del file in scrittura
+#apertura del file in scrittura, non uso il with open perché qui preferisco risparmiare una tabulazione
 f = open(file_name, "w")
 
 #scrivo il nome del circuto, cosa che serve ad hope
