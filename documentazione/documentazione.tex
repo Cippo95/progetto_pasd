@@ -4,6 +4,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \graphicspath{}
+\usepackage{listings}
+\usepackage{svg}
 
 \title{Progetto per il corso di Progetto Automatico di Sistemi Digitali}
 \author{Filippo Landi}
@@ -152,8 +154,20 @@ Questo comando ci restituirà un file da analizzare per le statistiche che ci in
 
 \subsection{Analisi del comando HOPE}
 
-Per i vari file useremo il comando "./hope -F fn -r n -0 -N mac\_{bit}.bench", dove fn è il nome di un file da scegliere e n è il numero di test pattern con cui voler testare il circuito.
-Per spiegare meglio il significato del comando riporto una mia traduzione dalla documentazione di HOPE dei vari argomenti:
+Per i vari file useremo il comando: 
+
+\begin{lstlisting}
+./hope -F fn -r n -0 -N -s m mac_{bit}.bench
+\end{lstlisting}
+
+Dove:
+\begin{itemize}
+\item fn è il nome di un file da scegliere a piacimento: io aggiungerò il suffisso "\_test" al nome del file bench, ad esempio: mac\_4\_test. 
+\item n è il numero di test pattern con cui voler testare il circuito: esploreremo un minimo cosa succede al variare di questo valore.
+\item m è un numero per fissare il seme usato da HOPE per la generazione casuale dei vettori: serve per mantenere i test ripetibili, io scelgo di usare il valore 1.
+\end{itemize}
+
+Per spiegare meglio il comando riporto una mia traduzione dalla documentazione di HOPE dei vari argomenti:
 
 \begin{itemize}
 \item "-F fn": Le uscite del circuito buono e difettoso sono riportate per ogni errore nel file fn. Con questa opzione, l'euristica di fault dropping di HOPE non viene eseguita, vale a dire che tutti i guasti vengono iniettati e simulati in parallelo.(default: l'uscita del circuito difettoso non viene segnalata.) 
@@ -167,6 +181,9 @@ I pattern di test sono generati in maniera random. La simulazione di guasto term
 
 \item "-N": Modalità diagnostica. Il fault dropping non è eseguito. Quindi, tutti i guasti sono simulati per ogni pattern di test. (default: i guasti rivelati durante la simulazione di guasto vengono tolti dalla lista dei guasti.)
 
+\item "-s m": Il seme iniziale del generatore casuale di numeri è impostato da m.
+Se m=0, il seme casuale è generato usando l'orario del computer. (default: -s 0)
+
 \end{itemize}
 
 Come spiegato avremo alla fine un file fn da analizzare.
@@ -177,19 +194,101 @@ L'analisi del file sarà fatto da uno script python che ho chiamato "gestats.py"
 
 Anche in questo caso il codice è ampiamente commentato e consiglio di leggerlo per comprenderne il funzionamento. 
 
-In breve esso non fa altro che analizzare le varie righe del file in questione: conta il numero di guasti iniettati, di errori rivelati
+In breve questo programma esegue questo algoritmo: 
+\begin{itemize}
+\item Apre il nostro file e con un ciclo lo legge riga per riga
+\item Se individua la parola "test" in una riga, vuol dire che sono all'inizio di un nuovo test: da questa riga posso ricavare i vettori di ingresso e l'uscita attuale del circuito.
+\item Ad ogni riga successiva ho l'iniezione di un guasto, conto queste righe per sapere il numero di guasti iniettati, inoltre:
+\begin{itemize}
+\item Una riga con asterisco significa che ho un guasto rivelato in uscita: conto questa riga nel contatore dei guasti rivelati
+\item Se non ho un guasto non c'è l'asterisco
+\end{itemize}
+\item Se individuo di nuovo la parola test:
+\begin{itemize}
+\item Vuol dire che è terminato il test precedente quindi devo calcolare la statistica che mi interessa che è la probabilità di errore in uscita, data dalla divisione tra i guasti rivelati e i guasti iniettati.
+\item Azzero i contatori e continuo.
+\end{itemize}
+\item Quando esco dal ciclo calcolo le statistiche per l'ultimo test.
+\end{itemize}
 
-Per salvare l'output del programma basta ridirigere l'output da terminale a un file a piacimento, questo inoltre velocizza di molto l'esecuzione del codice poiché risparmia tutto l'output a terminale: es. "getvectors.py mac > output\_mac"
+Per salvare l'output del programma si può ridirigere l'output da terminale a un file a piacimento: es. "getvectors.py mac > output\_mac".
+Ridirigere l'output inoltre fa risparmiare molto tempo di esecuzione: mostrare a terminale tutto rallenta di molto l'esecuzione del codice.
 
-Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac".
+Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac", questo è un semplice dump, probabilmente non di grande utilità.
+
+Alla fine di tutto questo lo script che gira su versioni di Python superiori alla 3.6 creerà un grafico a barre utilizzando matplotlib che illustra la probabilità di errore per ogni test.
+
+Purtroppo non sono riuscito a far girare questa feature con Python 2.7, in quanto non sono riuscito ad installare matplotlib per Python 2.7, probabilmente per una questione di ambiente, bisognerebbe provare con degli ambienti virtuali, ma non sono pratico nel loro utilizzo anche se ne comprendo l'utilità.
 
 \section{Analisi dei circuiti mac}
 
 \subsection{Analisi del mac 4 bit}
 
+Incominciamo con l'analisi di un mac a 4 bit.
+
+Creiamo il file .bench con:
+\begin{lstlisting}
+python3 mac_generator.py 4
+\end{lstlisting}
+Copiamo il file mac\_4.bench nella cartella di HOPE e lanciamo il comando:
+\begin{lstlisting}
+./hope -F mac_4_t16 -r 16 -0 -N -s 1 mac_4.bench
+\end{lstlisting}
+Abbiamo deciso quindi di testare il circuito con un pattern di 16 vettori.
+Copiamo il file mac\_4\_t16 nella cartella con i nostri script e lanciamo il comando:
+\begin{lstlisting}
+python3 getstats.py mac_4_t16
+\end{lstlisting}
+Questo è il grafico risultate:
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_4_t16_stats.svg}
+\end{figure}
+
+Ripetendo lo stesso procedimento per con un pattern di 32 vettori di test abbiamo questo grafico:
+
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_4_t32_stats.svg}
+\end{figure}
+
+Ripetendo lo stesso procedimento con un pattern di 64 vettori di test abbiamo questo grafico:
+
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_4_t64_stats.svg}
+\end{figure}
+
+Si può quindi notare che arrivati dopo un certo numero di test si arriva ad una saturazione.
+
+Vari commenti possibili ed eventuali.
+
+Passiamo al circuito ad 8 bit.
+
 \subsection{Analisi del mac 8 bit}
+I vari comandi possono essere estrapolati dai precedenti facilmente.
+Usiamo ancora 64 vettori di test.
+Il grafico risultante è questo:
+
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_8_t64_stats.svg}
+\end{figure}
+
+Abbiamo anche qui un comportamento simile a quello visto prima.
 
 \subsection{Analisi del mac 16 bit}
+Vediamo il grafico per il circuito a 16 bit.
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_16_t64_stats.svg}
+\end{figure}
+Vediamo il grafico quando i vettori in questo caso diventano 128.
+\begin{figure}
+\centering
+\includesvg[width=0.8\columnwidth]{mac_16_t128_stats.svg}
+\end{figure}
+
 
 \subsection{Ulteriori analisi}
 

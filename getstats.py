@@ -127,8 +127,7 @@ ax.set_ylim([0,100])
 ax.set_axisbelow(True)
 #stile della griglia
 ax.grid(linestyle='dashed')
-#aggiustamenti ai valori mostrati sugli assi
-ax.locator_params(axis='x', nbins=(x_count)/8)
+#aggiustamenti ai valori mostrati sull'asse delle y
 ax.locator_params(axis='y', nbins=25)
 #salvo la figura come svg, importante perché in png (opzione di default) le renderizza male
 fig.savefig(graph_name+".svg",format="svg")
