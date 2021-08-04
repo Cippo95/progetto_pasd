@@ -1,11 +1,8 @@
-#qui nei file per python 2.7 metto l'encoding
-
 #la libreria sys permette di usare gli argomenti a riga di comando
 import sys
 
 #la libreria matplot permette di scrivere i grafici
 import matplotlib.pyplot as plt
-from numpy import e
 
 #coordinate delle x, sono i valori per la posizione delle barre
 x_coordinates=[]
@@ -32,7 +29,6 @@ x_count = 0
 error_probabilities = []
 #uso questo array per salvare i vari test per poi farne un dump
 array = []
-
 
 #apertura del file in lettura, con with si chiude il file in automatico
 with open(file_name) as fp:
@@ -117,20 +113,23 @@ with open(fn_array, "w") as fp:
 #NB:ogni lista ha come primi due elementi gli ingressi e l'uscita precedente e poi le rivelazioni di guasto.
 
 #creo il grafico
+#il nome del file sarà quello del file .bench con suffisso stats
 graph_name = (f"{file_name}_stats")
-#plt.grid()
-#plt.bar(x_coordinates,error_probabilities)
-#plt.xlabel('test')
-#plt.ylabel('probabilità errore')
-#plt.title(graph_name)
-#plt.savefig(graph_name)
-
+#subplots più che altro per mettere la griglia in secondo piano
 fig, ax = plt.subplots()
+#creo un grafico a barre
 ax.bar(x_coordinates, error_probabilities)
-ax.set(xlabel='test', ylabel='probabilità errore',title=graph_name)
+#assegno le etichette agli assi e il titolo all'immagine
+ax.set(xlabel='test', ylabel='probabilità errore', title=graph_name)
+#forzo la y a mostrare sempre dal 0 al 100%, se no si adatterebbe a seconda dei dati
+ax.set_ylim([0,100])
+#forzo la griglia ad andare sotto al grafico
 ax.set_axisbelow(True)
+#stile della griglia
 ax.grid(linestyle='dashed')
-ax.locator_params(axis='x', nbins=(x_count)/4)
+#aggiustamenti ai valori mostrati sugli assi
+ax.locator_params(axis='x', nbins=(x_count)/8)
 ax.locator_params(axis='y', nbins=25)
-fig.savefig(graph_name)
+#salvo la figura come svg, importante perché in png (opzione di default) le renderizza male
+fig.savefig(graph_name+".svg",format="svg")
 

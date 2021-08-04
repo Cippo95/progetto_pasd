@@ -141,32 +141,58 @@ Se interessa, a livello di sorgenti ci sono state queste modifiche:
 \item La concatenzione delle stringhe avviene in maniera diversa tra le due versioni per le differenze dovute alla formattazione: con il nuovo metodo le stringhe si concatenano automaticamente, con il vecchio bisogna aggiungere un "+".
 \end{itemize}
 
-\section{Studio statistico del circuito}
+\section{Testing del circuito con HOPE}
 
 Ottenuto il file .bench contenente la descrizione del circuito possiamo passare ad usare HOPE.
 
 Scrivendo "./hope -h g" si apre la guida utente in cui si possono vedere i vari comandi disponibili.
 
-Si è deciso di sfruttare il circuito a 4 bit per le prime operazioni.
+Useremo un comando HOPE (con alcuni argomenti che spiego in seguito) per i mac 4 bit, 8 bit e 16 bit.
+Questo comando ci restituirà un file da analizzare per le statistiche che ci interessano.
 
-Con il comando "./hope -0 mac\_4.bench" possiamo testare il nostro mac e scoprire la copertura di guasto, "-0" serve per settare i flip flop a 0.
+\subsection{Analisi del comando HOPE}
 
-Con il comando "./hope -F {file\_name} -r 16 -0" possiamo:
+Per i vari file useremo il comando "./hope -F fn -r n -0 -N mac\_{bit}.bench", dove fn è il nome di un file da scegliere e n è il numero di test pattern con cui voler testare il circuito.
+Per spiegare meglio il significato del comando riporto una mia traduzione dalla documentazione di HOPE dei vari argomenti:
 
 \begin{itemize}
-\item Grazie a "-F {file\_name}" scrivere su un file per ogni guasto le uscite che saranno buone o guaste. Se rivelano il guasto avranno un asterisco nella loro linea.
-\item Grazie a "-r 16", testiamo con un pattern random di 16 vettori di test.
-\item "-0" come prima setta i flip flop a 0.
+\item "-F fn": Le uscite del circuito buono e difettoso sono riportate per ogni errore nel file fn. Con questa opzione, l'euristica di fault dropping di HOPE non viene eseguita, vale a dire che tutti i guasti vengono iniettati e simulati in parallelo.(default: l'uscita del circuito difettoso non viene segnalata.) 
+
+NOTA: Le linee dove il guasto viene rivelato hanno un asterisco.
+
+\item "-r n": (Modalità a pattern random)
+I pattern di test sono generati in maniera random. La simulazione di guasto termina se se tutti i guasti sono stati rivelato oppure se sono stati applicati n pattern. (default: -r 224)
+
+\item "-0": tutti i flip-flop sono settati inizialmente al livello logico 0
+
+\item "-N": Modalità diagnostica. Il fault dropping non è eseguito. Quindi, tutti i guasti sono simulati per ogni pattern di test. (default: i guasti rivelati durante la simulazione di guasto vengono tolti dalla lista dei guasti.)
+
 \end{itemize}
 
-Prendendo il file di output poi lo possiamo analizzare per uno studio statistico.
+Come spiegato avremo alla fine un file fn da analizzare.
 
-Realizzo questa funzione con lo script Python "getvectors.py".
-Questo script apre il file ottenuto e conta per ogni test il numero di guasti iniettati e quante volte rivelano un errore e calcola quindi una copertura di guasto relativa a quel test particolare.
+\section{Script getstats.py}
 
-Per salvare l'output del programma basta ridirigere l'output da terminale a un file a piacimento: es. "getvectors.py mac > output\_mac"
+L'analisi del file sarà fatto da uno script python che ho chiamato "gestats.py".
+
+Anche in questo caso il codice è ampiamente commentato e consiglio di leggerlo per comprenderne il funzionamento. 
+
+In breve esso non fa altro che analizzare le varie righe del file in questione: conta il numero di guasti iniettati, di errori rivelati
+
+Per salvare l'output del programma basta ridirigere l'output da terminale a un file a piacimento, questo inoltre velocizza di molto l'esecuzione del codice poiché risparmia tutto l'output a terminale: es. "getvectors.py mac > output\_mac"
 
 Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac".
+
+\section{Analisi dei circuiti mac}
+
+\subsection{Analisi del mac 4 bit}
+
+\subsection{Analisi del mac 8 bit}
+
+\subsection{Analisi del mac 16 bit}
+
+\subsection{Ulteriori analisi}
+
 
 \end{document}
 
