@@ -6,6 +6,7 @@
 \graphicspath{}
 \usepackage{listings}
 \usepackage{svg}
+\usepackage{pdfpages}
 
 \title{Progetto per il corso di Progetto Automatico di Sistemi Digitali}
 \author{Filippo Landi}
@@ -21,43 +22,45 @@ Il mio progetto per il corso di \textit{Progetto Automatico di Sistemi Digitali}
 
 Il progetto riguarda il collaudo dei sistemi digitali, un argomento trattato ampiamente nel corso.
 
-Al fine di simulare i guasti del circuito userò \textit{HOPE}: un simulatore di guasto per circuiti digitali sequenziali sviluppato dall'università VirginiaTech, uno strumento di Electronic Design Automation proposto durante il corso.
+Al fine di simulare i guasti del circuito userò \textit{HOPE}: un simulatore di guasto per circuiti sincroni e sequenziali proposto durante il corso.
 
-HOPE è un software per le università e la ricerca, per averne una copia bisogna entrare in contatto con l'università di VirginiaTech: io non lo condividerò in questo progetto.
+HOPE è stato sviluppato dall'università VirginiaTech ed è rilasciato per uso universitario o di ricerca, per averne una copia bisogna entrare in contatto con l'università di VirginiaTech: io non lo condividerò in questo progetto.
 
 HOPE legge i circuiti attraverso delle descrizioni della rete (dette anche \textit{netlist}) in formato \textit{.bench}, infatti il primo punto del progetto sarà l'implementazione del circuito in questo formato.
 
 Ho usato \textit{Python} per diversi passaggi del progetto: 
 \begin{itemize}
-\item Non è un linguaggio efficiente come ad esempio il linguaggio C, però mette a disposizione funzioni built-in per la manipolazione di stringhe che si sono rivelate molto comode da usare.
+\item Non è un linguaggio efficiente come ad esempio il linguaggio C, però mette a disposizione funzioni built-in per la manipolazione di stringhe che si sono rivelate molto utili.
 \item Ci sono molte librerie interessanti per Python come la libreria \textit{matplotlib} che mi ha permesso in maniera comoda di realizzare dei grafici dei dati raccolti.
 \end{itemize}
 
 I prerequisiti software quindi sono:
-\begin{enumerate} 
+\begin{itemize} 
 \item \textit{Python} in versione superiore alla 3.6.
 \item Il software \textit{HOPE}.
 \item La libreria \textit{matplotlib} (con le varie dipendenze).
-\end{enumerate}
-
-Ho inoltre modificato gli script per renderli compatibili con la versione 2.7 di Python tranne per quanto riguarda la realizzazione automatica dei grafici: ho trovato qualche problema probabilmente perché matplotlib si è installato per la mia versione (versione 3.8.10), probabilmente creando degli ambienti virtuali si risolve ma non ho esplorato questa via.
+\end{itemize}
 
 L'esposizione del progetto seguirà questo flusso: 
 \begin{enumerate}
-\item Partiremo dalla descrizione del circuito da studiare in termini di porte logiche.
-\item Passeremo poi ad analizzare la sua implementazione attraverso uno script Python.
+\item Vedremo l'implementazione del circuito in termini di porte logiche.
+\item Vedremo la sua implementazione in un file .bench attraverso lo script \textit{mac\_generator.py}.
 \item Vedremo come usare HOPE per i nostri scopi.
-\item Estrapoleremo dei dati e calcoleremo delle statistiche attraverso un altro script.
-\item Infine vedremo e commenteremo i risultati con alcuni grafici.
+\item Calcoleremo delle statistiche attraverso lo script \textit{getstats.py}.
+\item Infine commenteremo i risultati con alcuni grafici.
 \end{enumerate}
+
+Ho inoltre modificato gli script per renderli compatibili con la versione 2.7 di Python, tranne per la costruzione automatica dei grafici.
 
 \section{Circuito multiply and accumulate}
 
-Mi è stato richiesto di realizzare un circuito multiply and accumulate (mac) a 8 bit, esso è composto da un moltiplicatore con un sommatore in cascata e un registro per retroazionare le uscite in modo da accumulare i risultati.
+Inizialmente mi è stato richiesto di realizzare un circuito multiply and accumulate (mac) a 8 bit.
 
-Riporto un documento inviatomi dal professore che illustra gli schemi di un circuito di questo tipo a 4 bit.
+Un mac è composto da un moltiplicatore con un sommatore in cascata e un registro che retroaziona le uscite in modo da accumulare i risultati.
 
-\includegraphics[width=13cm]{mac.png}
+Riporto la documentazione che mi è stata inviata dal professore che illustra gli schemi di un mac a 4 bit.
+
+\includepdf[pages=-,frame=true,noautoscale,scale=0.9]{prova5.pdf}
 
 \newpage
 \subsection{Moltiplicatore}
@@ -65,15 +68,15 @@ La struttura del moltiplicatore è ben illustrata nella documentazione:
 
 \begin{itemize}
   \item Ogni segnale X è messo in AND con ogni Y, generando i segnali W.
-  \item I segnali W vengono usati da degli adder strutturati su più livelli: si può notare che il numero di livelli è n-1 in quanto al primo livello vengono usati WX1 e WX0, poi i rimanenti WXY nei livelli successivi.
+  \item I segnali W vengono usati da degli adder strutturati su più livelli: si può notare che il numero di livelli è \textit{n-1} in quanto al primo livello vengono usati WX1 e WX0, poi i rimanenti WXY nei livelli successivi.
 \end{itemize}
 
 \subsection{Sommatore}
-È un \textit{ripple carry adder} (\textit{rca} in breve) con dimensione degli ingressi 2n: un ingresso è dato dall'uscita del moltiplicatore mentre l'altra è data dalle uscite stesse del sommatore retroazionate attraverso dei flip-flop tipo D (circuito già integrato in HOPE).
+È un \textit{ripple carry adder} (\textit{rca} in breve) con dimensione degli ingressi 2n: un ingresso è dato dall'uscita del moltiplicatore mentre l'altro è dato dalle uscite stesse del sommatore retroazionate attraverso dei flip-flop tipo D (circuito già integrato in HOPE).
 
 \subsubsection{Ripple Carry Adder}
 
-Usiamo dei circuiti ripple carry adder sia per la cascata di adder del moltiplicatore oltre che per il successivo sommatore.
+Usiamo dei circuiti ripple carry adder sia per la cascata di adder del moltiplicatore sia, come già detto, per il sommatore.
 
 Questi circuiti nella precedente documentazione erano illustrati a livello \textit{register transfer level} (\textit{RTL}) per ragioni di chiarezza: per l'implementazione ci serve vedere come sono fatti a livello di porte logiche.
 
@@ -98,30 +101,30 @@ Gli rca sono formati da una serie di adder opportunamente collegati: gli adder s
 \caption{Schema del full-adder.}
 \end{figure}
 
-Si possono vedere gli schemi alla pagina \pageref{rca}.
+Gli schemi dei circuiti sono riportati alla pagina \pageref{rca}.
 
 \section{Script mac\_generator.py}
 
 La stesura manuale del file .bench del mac ad 8 bit non mi sembrava un approccio furbo vista l'architettura piuttosto complessa da rappresentare. Probabilmente proseguire con tale metologia avrebbe portato a vari errori: sia banalmente di battitura, sia dovuti alla complessità e quindi errori nel collegamento dei vari segnali. Per questo ho pensato ad una metodologia stile \textit{divide et impera}.
 
-In partenza ho scritto alcuni circuiti di prova per esplorare i vari adder e la prima parte del moltiplicatore.
+In partenza ho scritto alcuni circuiti di prova per esplorare l'implementazione dei vari adder e la prima parte del moltiplicatore.
 Li trovate nella cartella \textit{circuti\_prova}: non sono fondamentali per il progetto però possono aiutare alla comprensione della metodologia usata.
 
 Appurata la struttura dei circuiti base, ho creato uno script monolitico \textit{mac\_generator.py} che attraverso alcuni cicli e condizioni li collega in maniera consistente con gli schemi a mia disposizione.
 Questo script permette di generare mac con dimensione arbitraria degli ingressi da passare come argomento.
-Ad esempio per generare un mac 4 bit si può scrivere da terminale questo comando Python: 
+Ad esempio per generare un mac 8 bit si può scrivere da terminale questo comando Python: 
 
 \begin{lstlisting}
-python3 mac_generator.py 4  
+python3 mac_generator.py 8  
 \end{lstlisting}
 
 Il passo successivo sarebbe un approccio più modulare, che otterrebbe lo stesso risultato chiamando sottofunzioni per la varie parti del circuito: per i miei scopi uno script monolitico è più che sufficiente quindi mi fermo a questa versione.
 
 Il codice è ampiamente commentato quindi consiglio di leggerlo per comprenderne il funzionamento.
 
-L'unico punto che potrebbe essere difficoltoso è la comprensione dei vari segnali, proprio per questo un approccio manuale a mio avviso non sarebbe stato efficiente.
+L'unico punto che potrebbe essere difficoltoso è la comprensione dei vari segnali: proprio per questo un approccio manuale a mio avviso non sarebbe stato efficiente.
 
-Descrivo la struttura dei vari segnali sperando di fare un po' di chiarezza:
+Descrivo quindi la struttura dei vari segnali, sperando che sia di aiuto:
 
 \begin{itemize}
 
@@ -158,20 +161,16 @@ Descrivo la struttura dei vari segnali sperando di fare un po' di chiarezza:
 \item Lo stesso full-adder avrà Co1, 11, 21 e 31 (carry out e segnali interni) sempre legati al primo bit.
 \end{itemize}
 \end{itemize}
-
+\end{itemize}
 \end{itemize}
 
-\end{itemize}
-
-Probabilmente i segnali interni dei full-adder sono i più confusionari: nella mia prima analisi li avevo assegnati numerici e li ho mantenuti così, in caso basta cambiarli con una qualche lettera non assegnata.
-
-Spero che questa spiegazione dei segnali sia esaustiva alla comprensione della struttura del circuito risultante da questo primo script Python.
+Probabilmente i segnali interni dei full-adder sono quelli che creano maggiore confusione nella lettura: nella mia prima analisi li avevo assegnati numerici e li ho mantenuti così, in caso basta cambiarli con una qualche lettera non assegnata.
 
 \subsection{Versione compatibile con Python 2.7}
 
 Lo script mac\_generator.py funziona con Python 3.8.10 e dovrebbe funzionare con ogni versione superiore alla 3.6.
 
-Ho realizzato una versione compatibile con Python 2.7, nella cartella \textit{python2.7} sotto il nome di \textit{mac\_generator\_python2.py}: le modifiche non comportano differenze nei file di output.
+Ho realizzato una versione compatibile con Python 2.7 nella cartella \textit{python2.7}, sotto il nome di \textit{mac\_generator\_python2.py}: le modifiche non comportano differenze nei file di output.
 
 Se interessa, a livello di sorgenti ci sono state queste modifiche:
 \begin{itemize}
@@ -195,7 +194,7 @@ Per l'analisi dei nostri circuiti in particolare useremo questo comando:
 ./hope -F fn -r n -0 -N -s m mac_{bit}.bench
 \end{lstlisting}
 
-Per spiegare il comando riporto una mia traduzione dalla documentazione di HOPE dei vari argomenti:
+Per spiegare il comando riporto una mia traduzione della documentazione di HOPE sui vari argomenti:
 
 \begin{itemize}
 \item "-F fn": Vengono riportate nel file fn le uscite del circuito buono e difettoso per ogni errore. Con questa opzione, l'euristica di fault dropping di HOPE non viene eseguita, vale a dire che tutti i guasti vengono iniettati e simulati in parallelo.(default: l'uscita del circuito difettoso non viene segnalata.) 
@@ -214,47 +213,59 @@ Se m=0, il seme casuale è generato usando l'orario del computer. (default: -s 0
 
 \end{itemize}
 
-In breve: avendo dei flip-flop li settiamo a zero ed eseguiamo il test con m vettori di test, disabilitando il fault dropping, salvando il risultato in un file con tutti i vari guasti e fissando un seme per rendere i test ripetibili.
+In conclusione facciamo questo: avendo dei flip-flop li settiamo a 0 ed eseguiamo la simulazione di guasto con m vettori di test, disabilitando il fault dropping, salvando il risultato in un file con tutti i vari guasti e fissando un seme per rendere i test ripetibili.
 
 Vedremo degli esempi nel capitolo di analisi dei circuiti.
 
 \section{Script getstats.py}
 
-L'analisi del file salvato da HOPE sarà fatto da uno script Python che ho chiamato \textit{gestats.py}: ovviamente  bisogna passare il nome del file come argomento allo script.
+Ho realizzato lo script \textit{gestats.py} per analizzare il file generato da HOPE, basta passarlo come argomento:
+
+\begin{lstlisting}
+python3 getstats.py file_hope
+\end{lstlisting}
 
 Anche in questo caso il codice è ampiamente commentato e consiglio di leggerlo per comprenderne il funzionamento. 
 
 In breve questo programma esegue questo algoritmo: 
+
+\begin{enumerate}
+\item Setta dei contatori a 0 per i guasti rivelati e i guasti iniettati, apre il file e con un ciclo lo legge riga per riga:
+\item Se individua la parola "test" in una riga:
+
+\begin{enumerate}
+\item Se il contatore di guasti iniettati è diverso da 0, vuol dire che è terminato il test precedente quindi:
 \begin{itemize}
-\item Apre il file e con un ciclo lo legge riga per riga
-\item Se individua la parola "test" in una riga, vuol dire che sono all'inizio di un nuovo test: da questa riga posso ricavare i vettori di ingresso e l'uscita attuale del circuito.
-\item Ad ogni riga successiva ho l'iniezione di un guasto, conto queste righe per sapere il numero di guasti iniettati, inoltre:
-\begin{itemize}
-\item Una riga con asterisco significa che ho un guasto rivelato in uscita: conto questa riga nel contatore dei guasti rivelati
-\item Se non ho un guasto non c'è l'asterisco
-\end{itemize}
-\item Se individuo di nuovo la parola test:
-\begin{itemize}
-\item Vuol dire che è terminato il test precedente quindi devo calcolare la statistica che mi interessa che è la probabilità di errore in uscita, data dalla divisione tra i guasti rivelati e i guasti iniettati.
+\item Calcolo la probabilità di errore in uscita, data dalla divisione tra i guasti rivelati e i guasti iniettati.
 \item Azzero i contatori e continuo.
 \end{itemize}
-\item Quando esco dal ciclo calcolo le statistiche per l'ultimo test.
+\item Sono all'inizio di un nuovo test: da questa riga posso ricavare i vettori di ingresso e l'uscita attuale (e corretta) del circuito.
+\begin{itemize}
+\item Ogni riga successiva ho l'iniezione di un guasto nel circuito, quindi aumento di 1 il contatore dei guasti iniettati. Se inoltre la riga contiene un asterisco significa che ho un guasto rivelato in uscita e quindi aumento di 1 anche il contatore dei guasti rivelati.
 \end{itemize}
+\end{enumerate}
+
+\item Quando esco dal ciclo calcolo le statistiche per l'ultimo test e creo un grafico a barre con matplotlib che mostra la probabilità di errore per ogni test.
+\end{enumerate}
 
 Per salvare l'output del programma si può ridirigere l'output da terminale a un file a piacimento: es. "getvectors.py mac > output\_mac".
-Ridirigere l'output inoltre fa risparmiare molto tempo di esecuzione: mostrare a terminale tutto rallenta di molto l'esecuzione del codice.
+Ridirigere l'output inoltre fa risparmiare molto tempo di esecuzione perché appunto evita l'output a terminale che è piuttosto lento. 
 
-Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac", questo è un semplice dump, probabilmente non di grande utilità.
+Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac", questo è un semplice dump, probabilmente non di grande utilità: ogni array ha gli ingressi, l'uscita corretta e le varie uscite con guasti iniettati.
 
-Alla fine di tutto questo lo script che gira su versioni di Python superiori alla 3.6 creerà un grafico a barre utilizzando matplotlib che illustra la probabilità di errore per ogni test.
+\subsection{Script compatibile per Python 2.7}
 
-Purtroppo non sono riuscito a far girare questa feature con Python 2.7, in quanto non sono riuscito ad installare matplotlib per Python 2.7, probabilmente per una questione di ambiente, bisognerebbe provare con degli ambienti virtuali, ma non sono pratico nel loro utilizzo anche se ne comprendo l'utilità.
+Ho reso lo script compatibile con Python 2.7 tranne per la creazione dei grafici con matplotlib: mi dava problemi probabilmente per una questione di ambiente poiché si è installato per la mia versione di Python (3.8.10) quindi bisognerebbe provare con degli ambienti virtuali, ma non mi sono addentrato in questo problema.
 
 \section{Analisi dei circuiti mac}
 
+In conclusione vediamo i grafici generati e facciamo qualche commento.
+
+Mi è stato richiesto di analizzare questi dati per i circuiti a 4, 8 e 16 bit.
+
 \subsection{Analisi del mac 4 bit}
 
-Incominciamo con l'analisi di un mac a 4 bit. 
+Riporto per completezza tutta la procedura:
 
 \begin{enumerate}
 \item Creiamo il file \textit{mac\_4.bench}.
@@ -265,7 +276,7 @@ python3 mac_generator.py 4
 \begin{lstlisting}
 ./hope -F mac_4_t16 -r 16 -0 -N -s 1 mac_4.bench
 \end{lstlisting}
-N.B.: stiamo testando il circuito con un pattern di 16 vettori.
+N.B.: qui stiamo testando il circuito con un pattern di 16 vettori, useremo un seed di 1 per tutti i test successivi.
 \item Copiamo il file \textit{mac\_4\_t16} nella cartella con i gli script Python e lanciamo il comando:
 \begin{lstlisting}
 python3 getstats.py mac_4_t16
@@ -276,24 +287,21 @@ Questo è il grafico risultate:
 
 \includesvg[width=0.8\columnwidth]{mac_4_t16_stats.svg}
 
-Ripetendo lo stesso procedimento per con un pattern di 32 vettori di test abbiamo questo grafico:
+Ripetendo lo stesso procedimento con 32 vettori di test abbiamo questo grafico:
 
 \includesvg[width=0.8\columnwidth]{mac_4_t32_stats.svg}
 
-Ripetendo lo stesso procedimento con un pattern di 64 vettori di test abbiamo questo grafico:
+Ripetendo lo stesso procedimento con 64 vettori di test abbiamo questo grafico:
 
 \includesvg[width=0.8\columnwidth]{mac_4_t64_stats.svg}
 
-Notiamo quindi che raggiunti i 20 test, la probabilità di errore in uscita rimane intorno al 85% e non cresce più.
+Notiamo quindi che raggiunti i 20 test, la probabilità di errore in uscita rimane intorno al 85\% e non cresce più.
 
-Sarei potuto partire direttamente dal grafico con 64 vettori, nel mentre che facevo i test ero partito da 16 e ho scalato e mi sembrava un peccato non condividere i test.
-
-Passiamo ad analizzare nello stesso modo il circuito ad 8 bit.
+Passiamo al circuito a 8 bit mantenendo 64 vettori di test.
 
 \subsection{Analisi del mac 8 bit}
 
-Il procedimento è sempre lo stesso, lo riporto nuovamente anche se non necessario.
-Qui partiamo subito con 64 vettori di test.
+Il procedimento è sempre lo stesso, lo riporto nuovamente per completezza:
 
 \begin{enumerate}
 \item Creiamo il file \textit{mac\_8.bench}.
@@ -325,9 +333,33 @@ Per curiosità vediamo anche il grafico con 128 vettori di test.
 
 \includesvg[width=0.8\columnwidth]{mac_16_t128_stats.svg}
 
+Notiamo un comportamento simile a quello dei circuiti precedenti: intorno al cinquantesimo vettore la probabilità di errore in uscita arriva al 95\% e non aumenta ulteriormente con i vettori successivi.
+
 \subsection{Ulteriori analisi}
 
-Ho provato con il mac a 32 e 64 bit ma \textit{HOPE} da' un errore di segmentazione con l'opzione -F, i circuiti sono testabili normalmente ma per qualche motivo non riesce a salvare il file di tale opzione.
+Ho provato la stessa procedura con mac a 32 e 64 bit ma HOPE con l'opzione -F da' un errore di segmentazione: i circuiti sono testabili normalmente ma per qualche motivo non riesce a salvare il file di tale opzione.
+
+\subsection{Analisi conclusiva}
+
+Abbiamo quindi osservato un comportamento particolare: la probabilità di errore parte da un valore basso e poi all'aumentare dei vettori di test satura intorno ad una certa percentuale e continuerà ad oscillare intorno ad essa.
+
+Questo effetto è dovuto a fenomeni sequenziali dovuti al registro.
+
+Per testare questo ho creato un circuito \textit{mac\_4\_noreg} partendo da un mac 4 bit, dove ho eliminato il registro (che quindi ora non accumulerà più) e ho reso accessibile il secondo ingresso del sommatore.
+
+Ripetendo quanto fatto con in circuiti precedenti (eliminando l'opzione -0 che qui non serve) si ottiene questo grafico con un pattern di 16 vettori:
+
+\includesvg[width=0.8\columnwidth]{mac_4_noreg_t16_stats.svg}
+
+Come si può vedere qui non notiamo l'andamento visto precedentemente: ogni test è completamente estraneo del precedente.
+
+Come spiego l'andamento del test nel circuito sequenziale?
+
+\begin{itemize}
+\item Il valore molto basso iniziale è dato dal fatto che si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0 e poiché i nuovi valori del registro saranno campionati al test successivo.
+\item La spiegazione sui test successivi... wip 
+\end{itemize}
+
 
 \end{document}
 

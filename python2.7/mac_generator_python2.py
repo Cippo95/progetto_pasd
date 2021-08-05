@@ -164,8 +164,8 @@ for j in range(2*bit):
                 'Co{} = OR(3{}, 2{})\n'.format(j,j,j))
                 f.write(text_generated)
             else:
-                #l'ultimo però avrebbe un carry out floating quindi lo faccio diventare un halfadder
-                f.write('\n# Visto che il carry out sarebbe floating metto un halfadder\n# HALFADDER RCA INGRESSO BIT {}'.format(j))
+                #l'ultimo però avrebbe un carry out floating quindi lo elimino
+                f.write('\n# Visto che il carry out sarebbe floating lo elimino\n# FULLADDER SENZA CO RCA INGRESSO BIT {}'.format(j))
                 text_generated=('\n'
                 '1{} = XOR(CoL{}D{}, R{})\n'.format(j,bit-2,s-1,j)+
                 # f'2{j} = AND(CoL{u-2}D{s-1}, R{j})\n'

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  5 AUG 2021 00:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  5 AUG 2021 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -168,44 +168,82 @@ Package: transparent 2019/11/29 v1.4 Transparency via pdfTeX's color stack (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2020/01/28 v0.5q Insert pages of external PDF documents (AM)
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count191
+\calc@Bcount=\count192
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count193
+\calc@Cskip=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+))
+\AM@pagewidth=\dimen144
+\AM@pageheight=\dimen145
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2020/01/28 v0.5q Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box48
+\AM@global@opts=\toks18
+\AM@pagecnt=\count194
+\AM@toc@title=\toks19
+\c@AM@survey=\count195
+\AM@templatesizebox=\box49
+)
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count191
-\l__pdf_internal_box=\box48
+\l__kernel_color_stack_int=\count196
+\l__pdf_internal_box=\box50
 )
 (./documentazione.aux)
 \openout1 = `documentazione.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Info: Redefining \it@ocap on input line 13.
-LaTeX Info: Redefining \it@ccap on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Info: Redefining \it@ocap on input line 14.
+LaTeX Info: Redefining \it@ccap on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count192
-\scratchdimen=\dimen142
-\scratchbox=\box49
-\nofMPsegments=\count193
-\nofMParguments=\count194
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count195
-\MPscratchDim=\dimen143
-\MPnumerator=\count196
-\makeMPintoPDFobject=\count197
-\everyMPtoPDFconversion=\toks19
+\scratchcounter=\count197
+\scratchdimen=\dimen146
+\scratchbox=\box51
+\nofMPsegments=\count198
+\nofMParguments=\count199
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count266
+\MPscratchDim=\dimen147
+\MPnumerator=\count267
+\makeMPintoPDFobject=\count268
+\everyMPtoPDFconversion=\toks21
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -215,149 +253,194 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count198
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 14.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 14.
+\c@lstlisting=\count269
+\AtBeginShipoutBox=\box52
 
-[1
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 15.
+ [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<mac.png, id=15, 817.0525pt x 999.735pt>
-File: mac.png Graphic file (type png)
-<use mac.png>
-Package pdftex.def Info: mac.png  used on input line 60.
-(pdftex.def)             Requested size: 369.88582pt x 452.59193pt.
- [2] [3 <./mac.png>]
-<ripple_carry_adder.png, id=24, 1959.32pt x 811.03pt>
+<prova5.pdf, id=15, 614.295pt x 794.97pt>
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf>
+Package pdftex.def Info: prova5.pdf  used on input line 63.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf>
+Package pdftex.def Info: prova5.pdf  used on input line 63.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+<prova5.pdf, id=18, page=1, 614.295pt x 794.97pt>
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf, page 1>
+Package pdftex.def Info: prova5.pdf , page1 used on input line 63.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
+ [2]
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf, page 1>
+Package pdftex.def Info: prova5.pdf , page1 used on input line 63.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf, page 1>
+Package pdftex.def Info: prova5.pdf , page1 used on input line 63.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
+File: prova5.pdf Graphic file (type pdf)
+<use prova5.pdf, page 1>
+Package pdftex.def Info: prova5.pdf , page1 used on input line 63.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
+ [3 <./prova5.pdf>]
+<ripple_carry_adder.png, id=78, 1959.32pt x 811.03pt>
 File: ripple_carry_adder.png Graphic file (type png)
 <use ripple_carry_adder.png>
-Package pdftex.def Info: ripple_carry_adder.png  used on input line 84.
+Package pdftex.def Info: ripple_carry_adder.png  used on input line 87.
 (pdftex.def)             Requested size: 390.0pt x 161.42348pt.
-<half_adder.png, id=25, 128.20653pt x 71.59875pt>
+<half_adder.png, id=80, 128.20653pt x 71.59875pt>
 File: half_adder.png Graphic file (type png)
 <use half_adder.png>
-Package pdftex.def Info: half_adder.png  used on input line 91.
+Package pdftex.def Info: half_adder.png  used on input line 94.
 (pdftex.def)             Requested size: 128.2062pt x 71.59857pt.
-<full_adder.png, id=26, 398.23006pt x 237.29892pt>
+<full_adder.png, id=81, 398.23006pt x 237.29892pt>
 File: full_adder.png Graphic file (type png)
 <use full_adder.png>
-Package pdftex.def Info: full_adder.png  used on input line 97.
+Package pdftex.def Info: full_adder.png  used on input line 100.
 (pdftex.def)             Requested size: 227.62204pt x 135.63835pt.
-
-[4] [5 <./ripple_carry_adder.png> <./half_adder.png> <./full_adder.png>]
-[6] [7]
+ [4] [5 <./ripple_carry_adder.png> <./half_adder.png> <./full_adder.png>] [6] [
+7]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 189.
+(Font)              <12> on input line 188.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 189.
+(Font)              <8> on input line 188.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 189.
+(Font)              <6> on input line 188.
  [8] [9]
+[10]
 Package svg Info: Last page of `./svg-inkscape/mac_4_t16_stats_svg-tex.pdf' is 
-1 on input line 277.
+1 on input line 288.
  (./svg-inkscape/mac_4_t16_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_4_t16_stats_svg-tex.pdf, id=53, page=1, 462.52798pt x 346.8
-9601pt>
+<./svg-inkscape/mac_4_t16_stats_svg-tex.pdf, id=111, page=1, 462.52798pt x 346.
+89601pt>
 File: ./svg-inkscape/mac_4_t16_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_4_t16_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_4_t16_stats_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-) [10]
+)
 Package svg Info: Last page of `./svg-inkscape/mac_4_t32_stats_svg-tex.pdf' is 
-1 on input line 281.
+1 on input line 292.
 
 (./svg-inkscape/mac_4_t32_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_4_t32_stats_svg-tex.pdf, id=58, page=1, 462.52798pt x 346.8
-9601pt>
+<./svg-inkscape/mac_4_t32_stats_svg-tex.pdf, id=113, page=1, 462.52798pt x 346.
+89601pt>
 File: ./svg-inkscape/mac_4_t32_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_4_t32_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_4_t32_stats_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-)
+) [11 <./svg-inkscape/mac_4_t16_stats_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/mac_4_t64_stats_svg-tex.pdf' is 
-1 on input line 285.
-
-(./svg-inkscape/mac_4_t64_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_4_t64_stats_svg-tex.pdf, id=60, page=1, 462.52798pt x 346.8
-9601pt>
+1 on input line 296.
+ (./svg-inkscape/mac_4_t64_stats_svg-tex.pdf_tex
+<./svg-inkscape/mac_4_t64_stats_svg-tex.pdf, id=259, page=1, 462.52798pt x 346.
+89601pt>
 File: ./svg-inkscape/mac_4_t64_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_4_t64_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_4_t64_stats_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-) [11 <./svg-inkscape/mac_4_t16_stats_svg-tex.pdf> <./svg-inkscape/mac_4_t32_st
+) [12 <./svg-inkscape/mac_4_t32_stats_svg-tex.pdf> <./svg-inkscape/mac_4_t64_st
 ats_svg-tex.pdf
 
-pdfTeX warning: pdflatex (file ./svg-inkscape/mac_4_t32_stats_svg-tex.pdf): PDF
+pdfTeX warning: pdflatex (file ./svg-inkscape/mac_4_t64_stats_svg-tex.pdf): PDF
  inclusion: multiple pdfs with page group included in a single page
 >]
 Package svg Info: Last page of `./svg-inkscape/mac_8_t64_stats_svg-tex.pdf' is 
-1 on input line 315.
+1 on input line 323.
  (./svg-inkscape/mac_8_t64_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_8_t64_stats_svg-tex.pdf, id=388, page=1, 462.52798pt x 346.
+<./svg-inkscape/mac_8_t64_stats_svg-tex.pdf, id=726, page=1, 462.52798pt x 346.
 89601pt>
 File: ./svg-inkscape/mac_8_t64_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_8_t64_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_8_t64_stats_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-) [12 <./svg-inkscape/mac_4_t64_stats_svg-tex.pdf>]
+)
 Package svg Info: Last page of `./svg-inkscape/mac_16_t64_stats_svg-tex.pdf' is
- 1 on input line 322.
- (./svg-inkscape/mac_16_t64_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_16_t64_stats_svg-tex.pdf, id=673, page=1, 462.52798pt x 346
+ 1 on input line 330.
+
+(./svg-inkscape/mac_16_t64_stats_svg-tex.pdf_tex
+<./svg-inkscape/mac_16_t64_stats_svg-tex.pdf, id=728, page=1, 462.52798pt x 346
 .89601pt>
 File: ./svg-inkscape/mac_16_t64_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_16_t64_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_16_t64_stats_svg-tex.pdf , page1 us
 ed on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-)
-[13 <./svg-inkscape/mac_8_t64_stats_svg-tex.pdf>]
+) [13 <./svg-inkscape/mac_8_t64_stats_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/mac_16_t128_stats_svg-tex.pdf' i
-s 1 on input line 326.
-
-(./svg-inkscape/mac_16_t128_stats_svg-tex.pdf_tex
-<./svg-inkscape/mac_16_t128_stats_svg-tex.pdf, id=959, page=1, 462.52798pt x 34
-6.89601pt>
+s 1 on input line 334.
+ (./svg-inkscape/mac_16_t128_stats_svg-tex.pdf_tex
+<./svg-inkscape/mac_16_t128_stats_svg-tex.pdf, id=1014, page=1, 462.52798pt x 3
+46.89601pt>
 File: ./svg-inkscape/mac_16_t128_stats_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/mac_16_t128_stats_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/mac_16_t128_stats_svg-tex.pdf , page1 u
 sed on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
-) [14 <./svg-inkscape/mac_16_t64_stats_svg-tex.pdf> <./svg-inkscape/mac_16_t128
-_stats_svg-tex.pdf
+)
+[14 <./svg-inkscape/mac_16_t64_stats_svg-tex.pdf> <./svg-inkscape/mac_16_t128_s
+tats_svg-tex.pdf
 
 pdfTeX warning: pdflatex (file ./svg-inkscape/mac_16_t128_stats_svg-tex.pdf): P
 DF inclusion: multiple pdfs with page group included in a single page
->] [15] (./documentazione.aux) ) 
+>]
+Package svg Info: Last page of `./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pd
+f' is 1 on input line 352.
+ (./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf_tex
+<./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf, id=1771, page=1, 462.52798pt
+ x 346.89601pt>
+File: ./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf, page 1>
+Package pdftex.def Info: ./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf , pag
+e1 used on input line 56.
+(pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
+) [15 <./svg-inkscape/mac_4_noreg_t16_stats_svg-tex.pdf>] [16] (./documentazion
+e.aux) ) 
 Here is how much of TeX's memory you used:
- 5569 strings out of 481239
- 80927 string characters out of 5920377
- 356974 words of memory out of 5000000
- 20747 multiletter control sequences out of 15000+600000
+ 6471 strings out of 481239
+ 96021 string characters out of 5920377
+ 373801 words of memory out of 5000000
+ 21615 multiletter control sequences out of 15000+600000
  544649 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 33i,7n,57p,803b,1047s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-s
-uper-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx144
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440
-.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/tex
-mf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fonts/type1/publi
-c/cm-super/sfti1200.pfb>
-Output written on documentazione.pdf (15 pages, 712446 bytes).
+ 39i,20n,57p,803b,1047s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/
+texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on documentazione.pdf (16 pages, 776536 bytes).
 PDF statistics:
- 1757 PDF objects out of 2073 (max. 8388607)
- 1159 compressed objects within 12 object streams
+ 1962 PDF objects out of 2073 (max. 8388607)
+ 1300 compressed objects within 13 object streams
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
