@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  6 AUG 2021 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.6.28)  6 AUG 2021 15:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -321,30 +321,30 @@ Package pdftex.def Info: prova5.pdf , page1 used on input line 63.
 <ripple_carry_adder.png, id=78, 1959.32pt x 811.03pt>
 File: ripple_carry_adder.png Graphic file (type png)
 <use ripple_carry_adder.png>
-Package pdftex.def Info: ripple_carry_adder.png  used on input line 87.
+Package pdftex.def Info: ripple_carry_adder.png  used on input line 86.
 (pdftex.def)             Requested size: 390.0pt x 161.42348pt.
 <half_adder.png, id=80, 128.20653pt x 71.59875pt>
 File: half_adder.png Graphic file (type png)
 <use half_adder.png>
-Package pdftex.def Info: half_adder.png  used on input line 94.
+Package pdftex.def Info: half_adder.png  used on input line 93.
 (pdftex.def)             Requested size: 128.2062pt x 71.59857pt.
 <full_adder.png, id=81, 398.23006pt x 237.29892pt>
 File: full_adder.png Graphic file (type png)
 <use full_adder.png>
-Package pdftex.def Info: full_adder.png  used on input line 100.
+Package pdftex.def Info: full_adder.png  used on input line 99.
 (pdftex.def)             Requested size: 227.62204pt x 135.63835pt.
  [4] [5 <./ripple_carry_adder.png> <./half_adder.png> <./full_adder.png>] [6] [
 7]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 184.
+(Font)              <12> on input line 183.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 184.
+(Font)              <8> on input line 183.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 184.
+(Font)              <6> on input line 183.
  [8] [9]
 [10]
 Package svg Info: Last page of `./svg-inkscape/mac_4_t16_stats_svg-tex.pdf' is 
-1 on input line 286.
+1 on input line 285.
  (./svg-inkscape/mac_4_t16_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_4_t16_stats_svg-tex.pdf, id=111, page=1, 462.52798pt x 346.
 89601pt>
@@ -355,7 +355,7 @@ d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
 )
 Package svg Info: Last page of `./svg-inkscape/mac_4_t32_stats_svg-tex.pdf' is 
-1 on input line 290.
+1 on input line 289.
 
 (./svg-inkscape/mac_4_t32_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_4_t32_stats_svg-tex.pdf, id=113, page=1, 462.52798pt x 346.
@@ -367,7 +367,7 @@ d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
 ) [11 <./svg-inkscape/mac_4_t16_stats_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/mac_4_t64_stats_svg-tex.pdf' is 
-1 on input line 294.
+1 on input line 293.
  (./svg-inkscape/mac_4_t64_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_4_t64_stats_svg-tex.pdf, id=259, page=1, 462.52798pt x 346.
 89601pt>
@@ -383,7 +383,7 @@ pdfTeX warning: pdflatex (file ./svg-inkscape/mac_4_t64_stats_svg-tex.pdf): PDF
  inclusion: multiple pdfs with page group included in a single page
 >]
 Package svg Info: Last page of `./svg-inkscape/mac_8_t64_stats_svg-tex.pdf' is 
-1 on input line 321.
+1 on input line 320.
  (./svg-inkscape/mac_8_t64_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_8_t64_stats_svg-tex.pdf, id=726, page=1, 462.52798pt x 346.
 89601pt>
@@ -394,7 +394,7 @@ d on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
 )
 Package svg Info: Last page of `./svg-inkscape/mac_16_t64_stats_svg-tex.pdf' is
- 1 on input line 328.
+ 1 on input line 327.
 
 (./svg-inkscape/mac_16_t64_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_16_t64_stats_svg-tex.pdf, id=728, page=1, 462.52798pt x 346
@@ -406,7 +406,7 @@ ed on input line 56.
 (pdftex.def)             Requested size: 312.00119pt x 234.01236pt.
 ) [13 <./svg-inkscape/mac_8_t64_stats_svg-tex.pdf>]
 Package svg Info: Last page of `./svg-inkscape/mac_16_t128_stats_svg-tex.pdf' i
-s 1 on input line 332.
+s 1 on input line 331.
  (./svg-inkscape/mac_16_t128_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_16_t128_stats_svg-tex.pdf, id=1014, page=1, 462.52798pt x 3
 46.89601pt>
@@ -423,7 +423,7 @@ pdfTeX warning: pdflatex (file ./svg-inkscape/mac_16_t128_stats_svg-tex.pdf): P
 DF inclusion: multiple pdfs with page group included in a single page
 >]
 Package svg Info: Last page of `./svg-inkscape/mac_4_noreg_t64_stats_svg-tex.pd
-f' is 1 on input line 350.
+f' is 1 on input line 349.
  (./svg-inkscape/mac_4_noreg_t64_stats_svg-tex.pdf_tex
 <./svg-inkscape/mac_4_noreg_t64_stats_svg-tex.pdf, id=1771, page=1, 462.52798pt
  x 346.89601pt>
