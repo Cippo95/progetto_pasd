@@ -253,6 +253,8 @@ Ridirigere l'output inoltre fa risparmiare molto tempo di esecuzione perché app
 
 Il programma inoltre salva i vari vettori in file di testo sotto forma di array "vectors\_mac", questo è un semplice dump, probabilmente non di grande utilità: ogni array ha gli ingressi, l'uscita corretta e le varie uscite con guasti iniettati.
 
+È importante notare che bisogna disabilitare il fault dropping nei test (opzione -N) perché le statistiche calcolate da questo programma siano corrette: se fosse abilitato, gli errori iniettati diminuirebbero coi test perché rivelati e quindi non avremmo più la probabilità di errore totale in uscita ma solo quella riguardo quei particolari errori iniettati.
+
 \subsection{Script compatibile per Python 2.7}
 
 Ho reso lo script compatibile con Python 2.7 tranne per la creazione dei grafici con matplotlib: mi dava problemi probabilmente per una questione di ambiente poiché si è installato per la mia versione di Python (3.8.10) quindi bisognerebbe provare con degli ambienti virtuali, ma non mi sono addentrato in questo problema.
