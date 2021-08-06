@@ -363,7 +363,7 @@ Come spiego questo andamento nei circuiti sequenziali?
 
 \begin{itemize}
 \item Il valore del primo test è molto basso poiché si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0. Ho verificato questo nei file di output dei vari mac mentre ho notato per esempio che HOPE riesca a rivelare in uscita oltre questi anche uno stuck-at-1 sul carry out del bit 6 per l'accumulatore 8 bit anche se l'uscita apparentemente non cambia il che è particolare, suppongo che sia dovuta ad un euristico.
-\item La spiegazione sui test successivi mi è un po' difficile, è evidente che sia la sequenzialità a portare a questo fenomeno, in quanto nei vari test combinatori eseguiti nello stesso modo (tranne per l'opzione -0) non si nota questo andamento di crescita iniziale coi primi vettori e di fatto si può notare nei file di output dei circuiti sequenziali che gli stessi segnali riescano a rivelare in uscita sia stuck-at-0 che stuck-at-1 il che porta ad avere probabilità di errore molto alte.
+
 \end{itemize}
 
 \end{document}
