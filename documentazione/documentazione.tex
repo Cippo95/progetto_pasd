@@ -341,28 +341,29 @@ Ho provato la stessa procedura con mac a 32 e 64 bit ma HOPE con l'opzione -F da
 
 \subsection{Analisi conclusiva}
 
-Abbiamo quindi osservato un comportamento particolare: la probabilità di errore parte da un valore basso e poi all'aumentare dei vettori di test satura intorno ad una certa percentuale e continuerà ad oscillare intorno ad essa.
+Abbiamo quindi osservato questo comportamento: la probabilità di errore parte da un valore basso e poi all'aumentare dei vettori di test satura intorno ad una certa percentuale e continuerà ad oscillare intorno ad essa.
 
-Questo effetto è dovuto a fenomeni sequenziali dovuti al registro.
+Questo è dovuto al fatto per testare i circuiti sequenziali si operi per \textit{time frame}.
 
-Per testare questo ho creato un circuito \textit{mac\_4\_noreg} partendo da un mac 4 bit, dove ho eliminato il registro (che quindi ora non accumulerà più) e ho reso accessibile il secondo ingresso del sommatore.
+Per testare questo ho creato un circuito \textit{mac\_4\_noreg} partendo da un mac 4 bit, dove ho eliminato il registro (che quindi ora non accumulerà più) e ho reso accessibile il secondo ingresso del sommatore, ho quindi reso il circuito completamente combinatorio: ho estratto il \textit{combinational logic block} o \textit{CLB} del circuito sequenziale.
 
 Ripetendo quanto fatto nei circuiti precedenti (eliminando l'opzione -0 che qui non serve) si ottiene questo grafico con un pattern di 64 vettori:
 
 \includesvg[width=0.8\columnwidth]{mac_4_noreg_t64_stats.svg}
 
-Come si può vedere qui non notiamo l'andamento visto precedentemente.
+Come si può vedere qui non notiamo l'andamento visto precedentemente, perché non viene sfruttata l'espansione in time frame e quindi ogni test è indipendente dal precedente.
 
 Ho realizzato poi un semplice accumulatore ad 8 bit (senza il moltiplicatore in ingresso) e il risultato è stato questo con 224 vettori di test (ho dimenticato di limitarli):
 
 \includesvg[width=0.8\columnwidth]{rca_8_reg_t64_stats.svg}
 
-In cui notiamo nuovamente una partenza da una probilità di errore bassa che cresce fino ad un punto dove oscilla, in questo caso anche di molto.
+In cui notiamo nuovamente una probilità di errore bassa che cresce fino ad un punto dove oscilla, in questo caso anche di molto.
 
-Come spiego questo andamento nei circuiti sequenziali?
+Come detto vediamo questo fenomeno perché i circuiti sequenziali vengono testati tramite espansione in time frame, quindi:
 
 \begin{itemize}
-\item Il valore del primo test è molto basso poiché si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0. Ho verificato questo nei file di output dei vari mac mentre ho notato per esempio che HOPE riesca a rivelare in uscita oltre questi anche uno stuck-at-1 sul carry out del bit 6 per l'accumulatore 8 bit anche se l'uscita apparentemente non cambia il che è particolare, suppongo che sia dovuta ad un euristico.
+\item Al primo time frame, il primo vettore di test, la probabilità di errore è molto bassa poiché si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0. Ho verificato questo nei file di output dei vari mac mentre ho notato per esempio che HOPE riesca a rivelare in uscita oltre questi anche uno stuck-at-1 sul carry out del bit 6 per l'accumulatore 8 bit anche se l'uscita apparentemente non cambia il che è particolare, suppongo che sia dovuta ad un euristico.
+\item Nei time frame successivi, con applicazione dei vettori di test successivi, i guasti iniettati riescono un po' alla volta ad essere rivelati in uscita, evidentemente certi guasti necessitano di più time frame di altri e per questo si nota un aumento fino a un punto di saturazione dove aumentare i time frame non da' ulteriori benefici: informalmente da questo punto alcuni errori a seconda del time frame saranno rivelati o meno e bene o male non si cala sotto una certa percentuale perché dopo un tot di time frame comunque si riescono a rivelare in media tot errori.
 
 \end{itemize}
 
