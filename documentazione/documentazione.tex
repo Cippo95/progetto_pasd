@@ -345,7 +345,7 @@ Ho provato la stessa procedura con mac a 32 e 64 bit ma HOPE con l'opzione -F da
 
 Abbiamo quindi osservato questo comportamento: la probabilità di errore parte da un valore basso e poi all'aumentare dei vettori di test satura intorno ad una certa percentuale e continuerà ad oscillare intorno ad essa.
 
-Questo è dovuto al fatto per propagare gli effetti degli errori nei circuiti sequenziali bisogna applicare una serie di vettori di test.
+Questo è dovuto al fatto che per propagare gli effetti degli errori nei circuiti sequenziali bisogna applicare una serie di vettori di test.
 
 Per testare questo ho creato un circuito \textit{mac\_4\_noreg} partendo da un mac 4 bit, dove ho eliminato il registro (che quindi ora non accumulerà più) e ho reso accessibile il secondo ingresso del sommatore, ho quindi reso il circuito completamente combinatorio: ho estratto il \textit{combinational logic block} o \textit{CLB} del circuito sequenziale.
 
