@@ -363,7 +363,7 @@ Come detto vediamo questo fenomeno perché i circuiti sequenziali vengono testat
 
 \begin{itemize}
 \item Al primo time frame, il primo vettore di test, la probabilità di errore è molto bassa poiché si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0. Ho verificato questo nei file di output dei vari mac mentre ho notato per esempio che HOPE riesca a rivelare in uscita oltre questi anche uno stuck-at-1 sul carry out del bit 6 per l'accumulatore 8 bit anche se l'uscita apparentemente non cambia il che è particolare, suppongo che sia dovuta ad un euristico.
-\item Nei time frame successivi, con applicazione dei vettori di test successivi, i guasti iniettati riescono un po' alla volta ad essere rivelati in uscita, evidentemente certi guasti necessitano di più time frame di altri e per questo si nota un aumento fino a un punto di saturazione dove aumentare i time frame non da' ulteriori benefici: informalmente da questo punto alcuni errori a seconda del time frame saranno rivelati o meno e bene o male non si cala sotto una certa percentuale perché dopo un tot di time frame comunque si riescono a rivelare in media tot errori.
+\item Nei time frame successivi, con applicazione dei vettori di test successivi, i guasti iniettati riescono un po' alla volta ad essere rivelati in uscita, evidentemente certi guasti necessitano di più time frame di altri e per questo si nota un aumento fino a un punto di saturazione dove aumentare i time frame non da' ulteriori benefici: detta informalmente da questo punto alcuni errori a seconda del time frame saranno rivelati o meno e bene o male non si cala sotto una certa percentuale perché dopo un tot di time frame comunque si riescono a rivelare in media tot errori.
 
 \end{itemize}
 
