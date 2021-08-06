@@ -292,7 +292,7 @@ Ripetendo lo stesso procedimento con 64 vettori di test abbiamo questo grafico:
 
 \includesvg[width=0.8\columnwidth]{mac_4_t64_stats.svg}
 
-Notiamo quindi che raggiunti i 20 test, la probabilità di errore in uscita rimane intorno al 85\% e non cresce più.
+Notiamo quindi che raggiunti i 20 test, la probabilità di errore in uscita oscilla intorno al 85\%.
 
 Passiamo al circuito a 8 bit mantenendo 64 vettori di test.
 
@@ -319,7 +319,7 @@ Il grafico risultante è questo:
 
 \includesvg[width=0.8\columnwidth]{mac_8_t64_stats.svg}
 
-Abbiamo anche qui un comportamento simile a quello visto prima: indicativamente a 30 vettori la probabilità di errore va in saturazione.
+Abbiamo anche qui un comportamento simile a quello visto prima: indicativamente a 30 vettori la probabilità di errore va in saturazione e oscilla intorno al 93/%.
 
 \subsection{Analisi del mac 16 bit}
 Vediamo il grafico per il circuito a 16 bit con 64 vettori di test:
@@ -330,7 +330,7 @@ Per curiosità vediamo anche il grafico con 128 vettori di test.
 
 \includesvg[width=0.8\columnwidth]{mac_16_t128_stats.svg}
 
-Notiamo un comportamento simile a quello dei circuiti precedenti: intorno al cinquantesimo vettore la probabilità di errore in uscita arriva al 95\% e non aumenta ulteriormente con i vettori successivi.
+Notiamo un comportamento simile a quello dei circuiti precedenti: intorno al cinquantesimo vettore la probabilità di errore in uscita arriva (e oscilla) intorno al 95\%.
 
 \subsection{Ulteriori analisi}
 
