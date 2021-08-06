@@ -127,13 +127,10 @@ L'unico punto che potrebbe essere difficoltoso è la comprensione dei vari segna
 Descrivo quindi la struttura dei vari segnali, sperando che sia di aiuto:
 
 \begin{itemize}
-
 \item Gli input sono facilmente individuabili e sono X e Y seguiti dal rispettivo peso del bit, es. X0,Y0,X1,Y1 etc.
 \item I segnali W ottenuti dagli AND di X e Y sono scritti come "W\_XnYn" (n indica il peso del bit), es. W\_X0Y0.
 \item I ripple carry adder contengono half-adder e full-adder:
-
 \begin{itemize}
-
 \item Gli half-adder, come dagli schemi, hanno uscita S e Co (il carry out) e sono usati in generale (con qualche eccezione) per il bit di minor peso (bit 0):
 \begin{itemize}
 \item Nel moltiplicatore gli rca sono strutturati in livelli:
@@ -142,20 +139,19 @@ Descrivo quindi la struttura dei vari segnali, sperando che sia di aiuto:
 \item CoL0D0 indica il carry out dell'half-adder al livello (L) 0 del bit di peso (D) 0, questo carry out sarà il carry in del full-adder successivo.
 \end{itemize}
 \item Nel sommatore invece non ci sono più i livelli:
-\begin{itemize} 
+\begin{itemize}
 \item S0 indica l'uscita dell'half-adder per il bit di peso 0.
 \item C0 il suo carry out.
 \end{itemize}
 \end{itemize}
-
 \item I full-adder, come dagli schemi, hanno uscita S e Co con l'aggiunta rispetto gli half-adder dei segnali interni 1,2,3:
 \begin{itemize}
-\item Nel moltiplicatore gli rca sono strutturati in livelli: 
+\item Nel moltiplicatore gli rca sono strutturati in livelli:
 \begin{itemize}
-\item SL0D1 indica l'uscita del full-adder al livello (L) 0 del bit di peso (D) 1
+\item SL0D1 indica l'uscita del full-adder al livello (L) 0 del bit di peso (D) 1.
 \item lo stesso full-adder avrà CoL0D1, 1L0D1, 2L0D1 e 3L0D1 (carry out e segnali interni).
 \end{itemize}
-\item Nel sommatore invece non ci sono più i livelli: 
+\item Nel sommatore invece non ci sono più i livelli:
 \begin{itemize}
 \item S1 indica l'uscita del full-adder per il bit di peso 1
 \item Lo stesso full-adder avrà Co1, 11, 21 e 31 (carry out e segnali interni) sempre legati al primo bit.
