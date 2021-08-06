@@ -2175,8 +2175,8 @@ Co29 = OR(329, 229)
 S30 = XOR(Co29, 130)
 Co30 = OR(330, 230)
 
-# Visto che il carry out sarebbe floating metto un halfadder
-# HALFADDER RCA INGRESSO BIT 31
+# Visto che il carry out sarebbe floating lo elimino
+# FULLADDER SENZA CO RCA INGRESSO BIT 31
 131 = XOR(CoL14D15, R31)
 S31 = XOR(Co30, 131)
 

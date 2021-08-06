@@ -575,8 +575,8 @@ Co13 = OR(313, 213)
 S14 = XOR(Co13, 114)
 Co14 = OR(314, 214)
 
-# Visto che il carry out sarebbe floating metto un halfadder
-# HALFADDER RCA INGRESSO BIT 15
+# Visto che il carry out sarebbe floating lo elimino
+# FULLADDER SENZA CO RCA INGRESSO BIT 15
 115 = XOR(CoL6D7, R15)
 S15 = XOR(Co14, 115)
 

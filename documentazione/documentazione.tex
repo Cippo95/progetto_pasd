@@ -347,19 +347,24 @@ Questo effetto è dovuto a fenomeni sequenziali dovuti al registro.
 
 Per testare questo ho creato un circuito \textit{mac\_4\_noreg} partendo da un mac 4 bit, dove ho eliminato il registro (che quindi ora non accumulerà più) e ho reso accessibile il secondo ingresso del sommatore.
 
-Ripetendo quanto fatto con in circuiti precedenti (eliminando l'opzione -0 che qui non serve) si ottiene questo grafico con un pattern di 16 vettori:
+Ripetendo quanto fatto nei circuiti precedenti (eliminando l'opzione -0 che qui non serve) si ottiene questo grafico con un pattern di 64 vettori:
 
-\includesvg[width=0.8\columnwidth]{mac_4_noreg_t16_stats.svg}
+\includesvg[width=0.8\columnwidth]{mac_4_noreg_t64_stats.svg}
 
-Come si può vedere qui non notiamo l'andamento visto precedentemente: ogni test è completamente estraneo del precedente.
+Come si può vedere qui non notiamo l'andamento visto precedentemente.
 
-Come spiego l'andamento del test nel circuito sequenziale?
+Ho realizzato poi un semplice accumulatore ad 8 bit (senza il moltiplicatore in ingresso) e il risultato è stato questo con 224 vettori di test (ho dimenticato di limitarli):
+
+\includesvg[width=0.8\columnwidth]{rca_8_reg_t64_stats.svg}
+
+In cui notiamo nuovamente una partenza da una probilità di errore bassa che cresce fino ad un punto dove oscilla, in questo caso anche di molto.
+
+Come spiego questo andamento nei circuiti sequenziali?
 
 \begin{itemize}
-\item Il valore molto basso iniziale è dato dal fatto che si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0 e poiché i nuovi valori del registro saranno campionati al test successivo.
-\item La spiegazione sui test successivi... wip 
+\item Il valore del primo test è molto basso poiché si possono rivelare solo gli stuck-at 1 sul registro avendolo settato a 0. Ho verificato questo nei file di output dei vari mac mentre ho notato per esempio che HOPE riesca a rivelare in uscita oltre questi anche uno stuck-at-1 sul carry out del bit 6 per l'accumulatore 8 bit anche se l'uscita apparentemente non cambia il che è particolare, suppongo che sia dovuta ad un euristico.
+\item La spiegazione sui test successivi mi è un po' difficile, è evidente che sia la sequenzialità a portare a questo fenomeno, in quanto nei vari test combinatori eseguiti nello stesso modo (tranne per l'opzione -0) non si nota questo andamento di crescita iniziale coi primi vettori e di fatto si può notare nei file di output dei circuiti sequenziali che gli stessi segnali riescano a rivelare in uscita sia stuck-at-0 che stuck-at-1 il che porta ad avere probabilità di errore molto alte.
 \end{itemize}
-
 
 \end{document}
 
